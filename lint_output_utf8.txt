@@ -1,0 +1,13 @@
+﻿
+> vishwa@0.0.0 lint
+> eslint .
+
+
+C:\Users\HP\OneDrive\Desktop\vishwa\src\components\Projects.jsx
+  5:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\HP\OneDrive\Desktop\vishwa\src\context\ThemeContext.jsx
+  35:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+Γ£û 2 problems (2 errors, 0 warnings)
+
