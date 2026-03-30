@@ -1,0 +1,14 @@
+const si = require('react-icons/si');
+const html = Object.keys(si).find(k => k.toLowerCase().includes('html'));
+const css = Object.keys(si).find(k => k.toLowerCase().includes('css'));
+const js = Object.keys(si).find(k => k.toLowerCase().includes('javascript'));
+const node = Object.keys(si).find(k => k.toLowerCase() === 'sinodedotjs') || Object.keys(si).find(k => k.toLowerCase().includes('node'));
+const c = Object.keys(si).find(k => k.toLowerCase() === 'sic');
+const cpp = Object.keys(si).find(k => k.toLowerCase().includes('cplusplus'));
+const mongo = Object.keys(si).find(k => k.toLowerCase().includes('mongo'));
+const github = Object.keys(si).find(k => k.toLowerCase().includes('github'));
+const postman = Object.keys(si).find(k => k.toLowerCase().includes('postman'));
+const redis = Object.keys(si).find(k => k.toLowerCase().includes('redis'));
+const express = Object.keys(si).find(k => k.toLowerCase().includes('express'));
+const react = Object.keys(si).find(k => k.toLowerCase() === 'sireact') || Object.keys(si).find(k => k.toLowerCase().includes('react'));
+console.log({html, css, js, node, c, cpp, mongo, github, postman, redis, express, react});

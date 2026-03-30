@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Youtube } from 'lucide-react';
+import { SiLeetcode } from 'react-icons/si';
 
 const About = () => {
     return (
@@ -35,6 +36,7 @@ const About = () => {
 
                         <div className="pt-8 flex justify-center md:justify-start space-x-6">
                             <SocialButton href="https://github.com/VishwaPatel892" icon={<Github className="w-6 h-6" />} label="GitHub" />
+                            <SocialButton href="https://leetcode.com/u/vishwa0102/" icon={<SiLeetcode className="w-6 h-6" />} label="LeetCode" />
                             <SocialButton href="https://www.linkedin.com/in/vishwa-patel-9bab9639a" icon={<Linkedin className="w-6 h-6" />} label="LinkedIn" />
                             <SocialButton href="https://www.youtube.com/@VishwaPatel-vp" icon={<Youtube className="w-6 h-6" />} label="YouTube" />
                             <SocialButton href="mailto:vishwa.patel.cg@gmail.com" icon={<Mail className="w-6 h-6" />} label="Email" />

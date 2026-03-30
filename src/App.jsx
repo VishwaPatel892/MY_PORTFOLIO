@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Projects from './components/Projects';
+import Hackathon from './components/Hackathon';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -30,6 +31,7 @@ const MainLayout = () => (
       <Skills />
       <Education />
       <Projects />
+      <Hackathon />
       <Certificates />
       <LeetCode />
       <Contact />

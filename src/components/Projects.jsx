@@ -1,36 +1,64 @@
 import { motion } from "framer-motion";
-import { Rocket, ExternalLink, Github } from "lucide-react";
+import { Rocket, ExternalLink, Github, Youtube } from "lucide-react";
 import { projects } from "../data/projects";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
 
 const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 px-4 md:px-8 bg-gray-50 dark:bg-gray-900"
+      className="py-20 px-4 md:px-8 bg-white dark:bg-[#0B0212] transition-colors duration-300 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Top border */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/5 to-transparent"></div>
+      {/* Background blobs */}
+      <div className="absolute top-10 right-20 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none"></div>
+      <div className="absolute bottom-10 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-pink-500 font-semibold tracking-widest uppercase text-sm">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-pink-500 dark:text-pink-400 font-semibold tracking-widest uppercase text-sm">
             Portfolio
           </span>
-
           <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-800 dark:text-white">
             Featured{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">
               Projects
             </span>{" "}
             <Rocket className="inline-block h-8 w-8 text-pink-400 animate-pulse" />
           </h2>
-
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A collection of projects that showcase my skills and passion for
             building impactful digital solutions.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -38,7 +66,7 @@ const Projects = () => {
               index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -47,11 +75,10 @@ const Projects = () => {
 const ProjectCard = ({ project, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-      whileHover={{ y: -10 }}
+      variants={cardVariants}
+      whileHover={{ y: -10, scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className="h-full"
     >
       <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group h-full flex flex-col">
 
@@ -122,15 +149,15 @@ const ProjectCard = ({ project, index }) => {
 
             {/* YouTube Demo */}
             {project.youtube && (
-              <div className="mt-4">
-                <iframe
-                  className="w-full h-48 rounded-lg"
-                  src={project.youtube}
-                  title="Project Demo"
-                  frameBorder="0"
-                  allowFullScreen
-                ></iframe>
-              </div>
+              <a
+                href={project.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-red-500 font-medium hover:text-red-600 transition-colors"
+                >
+                  <Youtube className="mr-2 h-4 w-4" />
+                  YouTube Video
+              </a>
             )}
 
           </div>

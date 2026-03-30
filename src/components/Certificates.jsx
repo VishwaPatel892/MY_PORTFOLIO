@@ -1,6 +1,21 @@
 import { motion } from "framer-motion";
 import { Award, ExternalLink, Calendar } from "lucide-react";
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
 const certificates = [
   {
     id: 4,
@@ -98,33 +113,43 @@ const Certificates = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <span className="text-pink-600 dark:text-[#F472B6] font-semibold tracking-widest uppercase text-sm">
             Achievements
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
             Certifications{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">
-              & Awards
+              &amp; Awards
             </span>{" "}
             <Award className="inline-block h-8 w-8 text-yellow-500 animate-pulse" />
           </h2>
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-medium">
+          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
             Recognition of my technical expertise and continuous learning
             journey.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {certificates.map((cert, index) => (
             <motion.div
-              key={cert.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-white dark:bg-[#1a1025] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 dark:border-white/5 transition-all duration-300 group"
+              key={cert.id + index}
+              variants={cardVariants}
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="bg-white dark:bg-[#1a1025] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-pink-500/10 border border-gray-100 dark:border-white/5 dark:hover:border-pink-500/20 transition-all duration-300 group"
             >
               <div className="relative h-48 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
@@ -167,7 +192,7 @@ const Certificates = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
