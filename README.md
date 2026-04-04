@@ -10,12 +10,7 @@
 ---
 
 <!-- ================= BADGES ================= -->
-<p align="center">
-  <img src="https://img.shields.io/github/stars/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
-  <img src="https://img.shields.io/github/forks/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
-  <img src="https://img.shields.io/github/license/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
-</p>
+
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=VishwaPatel892&label=Repo%20Views&style=for-the-badge&color=6366F1" />
