@@ -1,90 +1,119 @@
-# MY_PORTFOLIO
-
 <!-- ================= HEADER ================= -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,50:8B5CF6,100:A855F7&height=250&section=header&text=Vishwa%20Patel&fontSize=55&fontColor=ffffff&animation=fadeIn" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:6366F1,100:A855F7&height=220&section=header&text=Portfolio%20Website&fontSize=45&fontColor=ffffff&animation=fadeIn" />
 </p>
 
-<!-- ================= TYPING ANIMATION ================= -->
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?size=28&duration=3000&color=A855F7&center=true&vCenter=true&width=800&lines=Full+Stack+Developer;MERN+Stack+Enthusiast;Building+Scalable+Web+Apps;Always+Learning+New+Tech" />
-</p>
-
-<!-- ================= PROFILE VIEWS ================= -->
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=VishwaPatel892&label=Profile%20Views&color=8B5CF6&style=for-the-badge" />
+  🚀 Modern Portfolio | 💻 Full Stack Developer | ⚡ High Performance UI
 </p>
 
 ---
 
-# 👨‍💻 About Me
+<!-- ================= BADGES ================= -->
+<p align="center">
+  <img src="https://img.shields.io/github/stars/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
+  <img src="https://img.shields.io/github/issues/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
+  <img src="https://img.shields.io/github/license/VishwaPatel892/MY_PORTFOLIO?style=for-the-badge" />
+</p>
 
-Hi 👋, I'm **Vishwa Patel**  
-💻 Full Stack Developer passionate about building modern web applications  
-
-- 🚀 MERN Stack Developer  
-- 🎯 Focused on UI/UX + Performance  
-- 📈 Constant Learner & Problem Solver  
-- 🔥 Love building real-world projects  
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=VishwaPatel892&label=Repo%20Views&style=for-the-badge&color=6366F1" />
+</p>
 
 ---
 
-# 🌐 Live Portfolio
+# 🌐 Live Demo
 
-🚀 **Visit Here:**  
-👉 https://my-portfolio-omega-weld-87.vercel.app/
+👉 **Visit Portfolio:**  
+https://my-portfolio-omega-weld-87.vercel.app/
+
+---
+
+# 📸 Preview
+
+<p align="center">
+  <!-- 🔥 Replace this with your actual GIF -->
+  <img src="https://via.placeholder.com/1000x500.png?text=Portfolio+Preview+GIF" />
+</p>
+
+---
+
+# 📌 Features
+
+✨ Modern and minimal UI  
+📱 Fully responsive (Mobile + Tablet + Desktop)  
+⚡ Fast performance and optimized assets  
+🎯 Smooth animations & transitions  
+📂 Project showcase section  
+📞 Contact form integration  
 
 ---
 
 # 🧰 Tech Stack
 
 <p align="center">
-
-<img src="https://skillicons.dev/icons?i=html,css,js,react,tailwind,nodejs,express,mongodb,git,github,vscode,postman" />
-
+  <img src="https://skillicons.dev/icons?i=react,tailwind,js,nodejs,express,mongodb,git,github,vscode,vercel" />
 </p>
 
 ---
 
-# 🚀 Projects
+# ⚙️ Getting Started
 
-## 📚 StudyNotion
-- Full-stack learning platform  
-- Authentication + Course Management + Payments  
-- Built with MERN Stack  
+### 1️⃣ Clone the repo
+```bash
+git clone https://github.com/VishwaPatel892/your-repo-name.git
+```
 
-## 🌐 Social Media App
-- Real-time user interaction  
-- Clean UI with dynamic features  
+### 2️⃣ Navigate to folder
+```bash
+cd your-repo-name
+```
 
-## 🛒 Posterz (E-commerce)
-- Shopping platform  
-- Product browsing + user features  
+### 3️⃣ Install dependencies
+```bash
+npm install
+```
 
----
-
-# 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=VishwaPatel892&show_icons=true&theme=tokyonight&hide_border=true&border_radius=10" height="180"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=VishwaPatel892&theme=tokyonight&hide_border=true&border_radius=10" height="180"/>
-</p>
+### 4️⃣ Run locally
+```bash
+npm run dev
+```
 
 ---
 
-# 🧠 LeetCode Stats
+# 📁 Project Structure
 
-<p align="center">
-  <img src="https://leetcard.jacoblin.cool/YOUR_LEETCODE_USERNAME?theme=dark&ext=heatmap" />
-</p>
+```
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   └── App.jsx
+├── package.json
+└── README.md
+```
 
 ---
 
-# 🏆 GitHub Trophies
+# 🚀 Deployment
 
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=VishwaPatel892&theme=tokyonight&no-frame=true&margin-w=10" />
-</p>
+Deployed on **Vercel** 🚀  
+
+Steps:
+1. Push code to GitHub  
+2. Import project in Vercel  
+3. Click **Deploy**  
+
+---
+
+# 🧠 What I Learned
+
+- Building responsive UI with Tailwind  
+- Optimizing performance & animations  
+- Structuring scalable React apps  
+- Deploying projects using Vercel  
 
 ---
 
@@ -92,16 +121,14 @@ Hi 👋, I'm **Vishwa Patel**
 
 <p align="center">
 
-<a href="https://linkedin.com/in/your-profile">
-  <img src="https://img.shields.io/badge/LinkedIn-6366F1?style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
 
-<a href="mailto:your-email@example.com">
-  <img src="https://img.shields.io/badge/Email-A855F7?style=for-the-badge&logo=gmail&logoColor=white" />
+
+<a href="mailto:vishwa.patel.cg@gmail.com">
+  <img src="https://img.shields.io/badge/Email-6366F1?style=for-the-badge&logo=gmail&logoColor=white" />
 </a>
 
 <a href="https://github.com/VishwaPatel892">
-  <img src="https://img.shields.io/badge/GitHub-8B5CF6?style=for-the-badge&logo=github&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub-A855F7?style=for-the-badge&logo=github&logoColor=white" />
 </a>
 
 </p>
@@ -110,10 +137,11 @@ Hi 👋, I'm **Vishwa Patel**
 
 # ⭐ Support
 
-If you like my work, consider giving a ⭐ to my repositories!
+If you like this project, give it a ⭐ and share it!
 
 ---
 
-# ⚡ Fun Fact
+# ⚡ Author
 
-> I turn ☕ coffee into scalable web applications 😄
+**Vishwa Patel**  
+💻 Full Stack Developer | 🚀 MERN Stack
