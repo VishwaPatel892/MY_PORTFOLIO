@@ -25,14 +25,6 @@ https://my-portfolio-omega-weld-87.vercel.app/
 
 ---
 
-# 📸 Preview
-
-<p align="center">
-  <!-- 🔥 Replace this with your actual GIF -->
-  <img src="https://via.placeholder.com/1000x500.png?text=Portfolio+Preview+GIF" />
-</p>
-
----
 
 # 📌 Features
 
@@ -48,7 +40,7 @@ https://my-portfolio-omega-weld-87.vercel.app/
 # 🧰 Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,tailwind,js,nodejs,express,mongodb,git,github,vscode,vercel" />
+  <img src="https://skillicons.dev/icons?i=react,tailwind,js,nodejs,express,mongodb,git,github,vscode,vercel,responsive,hover" />
 </p>
 
 ---
