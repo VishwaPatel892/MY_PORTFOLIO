@@ -15,13 +15,16 @@ import LeetCode from './components/LeetCode';
 import Certificates from './components/Certificates';
 import About from './components/About';
 import ScrollToTop from './components/ScrollToTop';
+import Loader from './components/Loader';
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 import { Routes, Route } from 'react-router-dom';
 import LiveDemo from './components/LiveDemo';
 
 // Main Layout Component
 const MainLayout = () => (
-  <div className="min-h-screen text-gray-800 dark:text-gray-200 transition-colors duration-300 relative">
+  <div className="min-h-screen text-gray-800 dark:text-gray-200 transition-colors duration-300 relative overflow-x-hidden">
     <CustomCursor />
     <Background3D />
     <Header />
@@ -42,11 +45,18 @@ const MainLayout = () => (
 );
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />} />
-      <Route path="/demo/:id" element={<LiveDemo />} />
-    </Routes>
+    <>
+      <AnimatePresence>
+        {loading && <Loader key="loader" onLoadingComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        <Route path="/demo/:id" element={<LiveDemo />} />
+      </Routes>
+    </>
   );
 }
 

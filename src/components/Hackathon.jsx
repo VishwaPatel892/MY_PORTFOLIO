@@ -33,6 +33,38 @@ const hackathons = [
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop',
         comingSoon: false,
     },
+    {
+        id: 3,
+        title: 'AI Cost Intelligence Dashboard',
+        event: 'Hackathon 2026',
+        team: 'CodeCrusaders',
+        date: '2026',
+        description:
+            'An intelligent dashboard designed to analyze and predict costs using AI models. Empowers businesses to make data-driven financial decisions with actionable insights.',
+        tags: ['AI', 'React', 'Analytics', 'Vercel'],
+        github: 'https://github.com/VishwaPatel892/Al-Cost-Intelligence-Dashboard',
+        live: 'https://al-cost-intelligence-dashboard.vercel.app/',
+        badge: '🏆 Winner',
+        color: 'from-blue-600 via-teal-500 to-emerald-500',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+        comingSoon: false,
+    },
+    {
+        id: 4,
+        title: 'AI Adaptive Onboarding',
+        event: 'Hackathon 2026',
+        team: 'CodeCrusaders',
+        date: '2026',
+        description:
+            'An AI-powered onboarding platform that automatically personalizes the learning experience and adapts to user interaction, streamlining new user orientation.',
+        tags: ['AI', 'React', 'Onboarding', 'Adaptive'],
+        github: 'https://github.com/VishwaPatel892/ai-adaptive-onboarding',
+        live: 'https://ai-adaptive-onboarding-cb1e.vercel.app/',
+        badge: '🌟 Featured',
+        color: 'from-orange-500 via-red-500 to-pink-600',
+        image: 'https://images.unsplash.com/photo-1536412597336-aea7ddb2ee03?q=80&w=2070&auto=format&fit=crop',
+        comingSoon: false,
+    },
 ];
 
 const containerVariants = {
@@ -75,7 +107,7 @@ const Hackathon = () => {
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
                         Hackathon{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">
+                        <span className="text-gradient">
                             Projects
                         </span>{' '}
                         <Trophy className="inline-block h-9 w-9 text-yellow-400 animate-bounce ml-2" />

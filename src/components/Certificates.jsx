@@ -125,7 +125,7 @@ const Certificates = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
             Certifications{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">
+            <span className="text-gradient">
               &amp; Awards
             </span>{" "}
             <Award className="inline-block h-8 w-8 text-yellow-500 animate-pulse" />

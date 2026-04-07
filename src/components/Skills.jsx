@@ -8,22 +8,27 @@ import { SiTailwindcss, SiCplusplus, SiMongodb, SiPostman, SiFigma } from 'react
 import { VscVscode } from 'react-icons/vsc';
 
 const skillsList = [
-    { title: 'MongoDB',     category: 'Database',       description: 'NoSQL Database',       icon: SiMongodb,     color: 'text-white' },
-    { title: 'React.js',    category: 'Frontend',       description: 'UI Library',           icon: FaReact,       color: 'text-pink-300' },
-    { title: 'Node.js',     category: 'Backend',        description: 'Server Runtime',       icon: FaNodeJs,      color: 'text-purple-300' },
-    { title: 'Tailwind CSS',category: 'Web Styling',    description: 'Utility-first CSS',    icon: SiTailwindcss, color: 'text-white' },
-    { title: 'HTML5',       category: 'Frontend',       description: 'Structural Markup',    icon: FaHtml5,       color: 'text-pink-400' },
-    { title: 'CSS3',        category: 'Frontend',       description: 'Styling & Animations', icon: FaCss3Alt,     color: 'text-purple-300' },
-    { title: 'JavaScript',  category: 'Frontend',       description: 'Logic & Interactivity',icon: FaJs,          color: 'text-purple-400' },
-    { title: 'C',           category: 'Programming',    description: 'Systems Language',     icon: FaCuttlefish,  color: 'text-pink-200' },
-    { title: 'C++',         category: 'Programming',    description: 'Object-Oriented',      icon: SiCplusplus,   color: 'text-purple-300' },
-    { title: 'Postman',     category: 'Tools',          description: 'API Testing',          icon: SiPostman,     color: 'text-pink-400' },
-    { title: 'GitHub',      category: 'Version Control',description: 'Code Hosting',         icon: FaGithub,      color: 'text-white' },
-    { title: 'Git',         category: 'Version Control',description: 'Source Control',       icon: FaGitAlt,      color: 'text-pink-300' },
-    { title: 'VS Code',     category: 'Editor',         description: 'Code Editor',          icon: VscVscode,     color: 'text-purple-400' },
-    { title: 'Figma',       category: 'Design',         description: 'UI/UX Design',         icon: SiFigma,       color: 'text-pink-300' },
-    { title: 'REST API',    category: 'Architecture',   description: 'Web Services',         icon: FaServer,      color: 'text-purple-300' },
+    // Frontend
+    { title: 'React.js',    category: 'Frontend',       description: 'UI Library',           icon: FaReact,       color: 'text-cyan-500 dark:text-cyan-400' },
+    { title: 'Tailwind CSS',category: 'Frontend',       description: 'Utility-first CSS',    icon: SiTailwindcss, color: 'text-sky-500 dark:text-cyan-400' },
+    { title: 'HTML5',       category: 'Frontend',       description: 'Structural Markup',    icon: FaHtml5,       color: 'text-orange-600 dark:text-orange-500' },
+    { title: 'CSS3',        category: 'Frontend',       description: 'Styling & Animations', icon: FaCss3Alt,     color: 'text-blue-600 dark:text-blue-500' },
+    { title: 'JavaScript',  category: 'Frontend',       description: 'Logic & Interactivity',icon: FaJs,          color: 'text-yellow-600 dark:text-yellow-500' },
+    // Backend
+    { title: 'Node.js',     category: 'Backend',        description: 'Server Runtime',       icon: FaNodeJs,      color: 'text-green-600 dark:text-green-500' },
+    { title: 'MongoDB',     category: 'Backend',        description: 'NoSQL Database',       icon: SiMongodb,     color: 'text-emerald-600 dark:text-emerald-500' },
+    { title: 'REST API',    category: 'Backend',        description: 'Web Services',         icon: FaServer,      color: 'text-purple-600 dark:text-purple-400' },
+    // Languages & Tools
+    { title: 'C',           category: 'Programming',    description: 'Systems Language',     icon: FaCuttlefish,  color: 'text-blue-600 dark:text-blue-400' },
+    { title: 'C++',         category: 'Programming',    description: 'Object-Oriented',      icon: SiCplusplus,   color: 'text-indigo-600 dark:text-indigo-400' },
+    { title: 'Postman',     category: 'Tools',          description: 'API Testing',          icon: SiPostman,     color: 'text-orange-600 dark:text-orange-500' },
+    { title: 'GitHub',      category: 'Tools',          description: 'Code Hosting',         icon: FaGithub,      color: 'text-gray-900 dark:text-white' },
+    { title: 'Git',         category: 'Tools',          description: 'Source Control',       icon: FaGitAlt,      color: 'text-orange-600 dark:text-orange-500' },
+    { title: 'VS Code',     category: 'Tools',          description: 'Code Editor',          icon: VscVscode,     color: 'text-blue-500 dark:text-blue-400' },
+    { title: 'Figma',       category: 'Tools',          description: 'UI/UX Design',         icon: SiFigma,       color: 'text-pink-500 dark:text-pink-400' },
 ];
+
+const categories = ['Frontend', 'Backend', 'Programming', 'Tools'];
 
 // Unique float params per card so they all drift independently
 const floatParams = skillsList.map((_, i) => ({
@@ -36,10 +41,10 @@ const Skills = () => {
     return (
         <section
             id="skills"
-            className="py-24 bg-white dark:bg-[#0B0212] transition-colors duration-300 relative overflow-hidden"
+            className="py-24 bg-gray-50 dark:bg-[#0B0212] transition-colors duration-300 relative overflow-hidden"
         >
             {/* Decorative top border */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/5 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/5 to-transparent" />
 
             {/* Background blobs */}
             <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none" />
@@ -59,7 +64,7 @@ const Skills = () => {
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
                         Skills &{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">
+                        <span className="text-gradient">
                             Technologies
                         </span>{' '}
                         <Wrench className="inline-block h-8 w-8 text-gray-400 dark:text-gray-500 animate-pulse ml-2" />
@@ -69,15 +74,33 @@ const Skills = () => {
                     </p>
                 </motion.div>
 
-                {/* Cards Grid */}
-                <div className="flex flex-wrap justify-center gap-6">
-                    {skillsList.map((skill, index) => (
-                        <SkillCard
-                            key={index}
-                            skill={skill}
-                            index={index}
-                            float={floatParams[index]}
-                        />
+                {/* Cards Grid by Category */}
+                <div className="space-y-16">
+                    {categories.map((category) => (
+                        <div key={category} className="relative">
+                            <motion.h3 
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-8 border-b-2 border-pink-500/30 pb-2 inline-block"
+                            >
+                                {category}
+                            </motion.h3>
+                            <div className="flex flex-wrap justify-center gap-6">
+                                {skillsList.filter(s => s.category === category).map((skill, localIndex) => {
+                                    const globalIndex = skillsList.findIndex(s => s.title === skill.title);
+                                    return (
+                                        <SkillCard
+                                            key={globalIndex}
+                                            skill={skill}
+                                            index={globalIndex}
+                                            float={floatParams[globalIndex % floatParams.length]}
+                                        />
+                                    );
+                                })}
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -99,7 +122,7 @@ const SkillCard = ({ skill, index, float }) => {
             }}
             viewport={{ once: true }}
             transition={{
-                delay: index * 0.07,
+                delay: (index % 10) * 0.07,
                 duration: 0.65,
                 ease: 'easeOut',
             }}
@@ -119,7 +142,7 @@ const SkillCard = ({ skill, index, float }) => {
                 <motion.div
                     whileHover={{ scale: 1.08, y: -8 }}
                     transition={{ type: 'spring', stiffness: 340, damping: 16 }}
-                    className="group relative w-40 bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-2xl px-5 py-6 flex flex-col items-center text-center cursor-pointer hover:border-pink-500/50 dark:hover:border-pink-500/40 hover:shadow-2xl hover:shadow-pink-500/20 transition-colors duration-300"
+                    className="group relative w-40 bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-2xl px-5 py-6 flex flex-col items-center text-center cursor-pointer hover:border-pink-500/50 dark:hover:border-pink-500/40 hover:shadow-2xl hover:shadow-pink-500/20 shadow-md shadow-gray-100/50 dark:shadow-none transition-colors duration-300"
                 >
                     {/* Glow overlay on hover */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500/0 to-purple-600/0 group-hover:from-pink-500/10 group-hover:to-purple-600/10 transition-all duration-300 pointer-events-none" />
@@ -138,7 +161,7 @@ const SkillCard = ({ skill, index, float }) => {
                     <p className="text-pink-600 dark:text-pink-400/80 text-xs font-semibold mb-1 relative z-10">
                         {skill.category}
                     </p>
-                    <p className="text-gray-400 dark:text-gray-500 text-xs relative z-10">
+                    <p className="text-gray-500 dark:text-gray-400 text-xs relative z-10">
                         {skill.description}
                     </p>
                 </motion.div>

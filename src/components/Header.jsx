@@ -25,11 +25,20 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
-                    <div className="flex-shrink-0 flex items-center group cursor-pointer">
-                        <Sparkles className="h-6 w-6 text-pink-500 dark:text-[#F472B6] mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                        <span className="font-bold text-2xl text-gray-900 dark:text-white tracking-wide">
-                            Vishwa Patel
-                        </span>
+                    <div className="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform duration-300" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                        <img 
+                            src="/logo.png" 
+                            alt="Vishwa Patel Logo" 
+                            className="h-16 w-auto object-contain dark:[mix-blend-mode:screen] dark:brightness-110 drop-shadow-[0_0_8px_rgba(244,114,182,0.4)]"
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.style.display = 'none';
+                                const span = document.createElement('span');
+                                span.className = 'text-2xl font-black text-gradient px-3 py-1';
+                                span.textContent = 'VP';
+                                e.target.parentElement.appendChild(span);
+                            }}
+                        />
                     </div>
 
                     {/* Desktop Navigation */}
@@ -38,16 +47,16 @@ const Header = () => {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-[#F472B6] transition-colors font-medium text-sm tracking-wide"
+                                className="text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-[#F472B6] transition-colors font-medium text-sm tracking-wide relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-pink-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
                             >
                                 {link.name}
                             </a>
                         ))}
-
+                        
                         {/* Theme Toggle */}
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none"
+                            className="p-2 mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none"
                             aria-label="Toggle theme"
                         >
                             {theme === 'light' ? (
@@ -56,6 +65,7 @@ const Header = () => {
                                 <Moon className="h-5 w-5 text-blue-400" />
                             )}
                         </button>
+
                     </div>
 
                     {/* Mobile menu button */}

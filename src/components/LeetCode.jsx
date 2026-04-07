@@ -56,7 +56,7 @@ const LeetCode = () => {
                 <div className="text-center mb-16">
                     <span className="text-pink-600 dark:text-[#F472B6] font-semibold tracking-widest uppercase text-sm">Problem Solving</span>
                     <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white flex items-center justify-center gap-3">
-                        Live LeetCode <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">Active Solve</span>
+                        Live LeetCode <span className="text-gradient">Active Solve</span>
                         <span className="relative flex h-3 w-3">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>

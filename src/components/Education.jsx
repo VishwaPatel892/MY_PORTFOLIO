@@ -38,7 +38,7 @@ const Education = () => {
                 <div className="text-center mb-16">
                     <span className="text-pink-600 dark:text-pink-400 font-semibold tracking-widest uppercase text-sm">Background</span>
                     <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
-                        Education & <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">Learning</span> <BookOpen className="inline-block h-8 w-8 text-pink-500 animate-bounce" />
+                        Education & <span className="text-gradient">Learning</span> <BookOpen className="inline-block h-8 w-8 text-pink-500 animate-bounce" />
                     </h2>
                     <p className="mt-4 text-gray-800 dark:text-gray-200 max-w-2xl mx-auto font-medium">
                         My academic journey and the foundation of knowledge that drives my professional work.

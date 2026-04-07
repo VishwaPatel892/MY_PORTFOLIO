@@ -40,7 +40,7 @@ const Projects = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-800 dark:text-white">
             Featured{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-[#F472B6] dark:to-[#A855F7]">
+            <span className="text-gradient">
               Projects
             </span>{" "}
             <Rocket className="inline-block h-8 w-8 text-pink-400 animate-pulse" />

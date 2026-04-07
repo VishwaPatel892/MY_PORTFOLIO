@@ -48,6 +48,15 @@ textarea {
   .advanced-hover {
     @apply hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl dark:hover:shadow-[0_20px_40px_-15px_rgba(255,255,255,0.1)];
   }
+
+  .text-gradient {
+    background-image: linear-gradient(to right, #ec4899, #a855f7);
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    display: inline-block;
+  }
 }
 
 /* Global advanced interactive elements */

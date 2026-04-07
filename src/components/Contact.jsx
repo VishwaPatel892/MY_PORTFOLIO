@@ -51,7 +51,7 @@ const Contact = () => {
                 <div className="text-center mb-16">
                     <span className="text-pink-600 dark:text-pink-500 font-semibold tracking-widest uppercase text-sm">Say Hello</span>
                     <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
-                        Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">Connect!</span> <MessageSquare className="inline-block h-8 w-8 text-purple-500 dark:text-purple-400 animate-bounce delay-100" />
+                        Let's <span className="text-gradient">Connect!</span> <MessageSquare className="inline-block h-8 w-8 text-purple-500 dark:text-purple-400 animate-bounce delay-100" />
                     </h2>
                     <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-lg mx-auto">
                         I'd love to hear from you! Whether you have a question, want to collaborate, or just want to say hi~
