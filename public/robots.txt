@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-portfolio-omega-weld-87.vercel.app/sitemap.xml
