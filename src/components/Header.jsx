@@ -1,8 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, X, Sun, Moon, Sparkles } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/* ─────────────────────────────────────────────
+   LogoCanvas
+   Draws logo.png onto a <canvas>, then removes
+   all near-white / near-pink background pixels
+   so the logo floats transparently over any bg.
+───────────────────────────────────────────── */
+const LogoCanvas = ({ className }) => {
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        const img = new window.Image();
+        img.src = '/logo.png';
+        img.onload = () => {
+            canvas.width  = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            ctx.drawImage(img, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const d = imageData.data;
+
+            for (let i = 0; i < d.length; i += 4) {
+                const r = d[i], g = d[i + 1], b = d[i + 2];
+                // Light-pink / white detection:
+                // high R, moderate-high G, moderate-high B  →  background
+                const isLightBg = r > 200 && g > 180 && b > 185;
+                if (isLightBg) {
+                    // Fade out proportionally to how "background-like" the pixel is
+                    const whiteness = Math.min(r, g, b);
+                    d[i + 3] = Math.max(0, 255 - Math.round((whiteness - 160) * 3.5));
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        };
+    }, []);
+
+    return (
+        <canvas
+            ref={canvasRef}
+            className={className}
+            style={{ imageRendering: 'crisp-edges' }}
+        />
+    );
+};
+
+/* ─────────────────────────────────────────────
+   Header
+───────────────────────────────────────────── */
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, toggleTheme } = useTheme();
@@ -10,35 +62,27 @@ const Header = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Education', href: '#education' },
-        { name: 'Projects', href: '#projects' },
+        { name: 'Home',         href: '#home' },
+        { name: 'About',        href: '#about' },
+        { name: 'Skills',       href: '#skills' },
+        { name: 'Education',    href: '#education' },
+        { name: 'Projects',     href: '#projects' },
         { name: 'Certificates', href: '#certificates' },
-        { name: 'LeetCode', href: '#leetcode' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'LeetCode',     href: '#leetcode' },
+        { name: 'Contact',      href: '#contact' },
     ];
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-[#0B0212]/30 backdrop-blur-md border-b border-gray-200 dark:border-white/5 shadow-sm transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
+
                     {/* Logo */}
-                    <div className="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform duration-300" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-                        <img 
-                            src="/logo.png" 
-                            alt="Vishwa Patel Logo" 
-                            className="h-16 w-auto object-contain dark:[mix-blend-mode:screen] dark:brightness-110 drop-shadow-[0_0_8px_rgba(244,114,182,0.4)]"
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.style.display = 'none';
-                                const span = document.createElement('span');
-                                span.className = 'text-2xl font-black text-gradient px-3 py-1';
-                                span.textContent = 'VP';
-                                e.target.parentElement.appendChild(span);
-                            }}
-                        />
+                    <div
+                        className="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform duration-300"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    >
+                        <LogoCanvas className="h-16 w-auto object-contain" />
                     </div>
 
                     {/* Desktop Navigation */}
@@ -52,7 +96,7 @@ const Header = () => {
                                 {link.name}
                             </a>
                         ))}
-                        
+
                         {/* Theme Toggle */}
                         <button
                             onClick={toggleTheme}
@@ -60,12 +104,11 @@ const Header = () => {
                             aria-label="Toggle theme"
                         >
                             {theme === 'light' ? (
-                                <Sun className="h-5 w-5 text-yellow-500" />
+                                <Sun  className="h-5 w-5 text-yellow-500" />
                             ) : (
                                 <Moon className="h-5 w-5 text-blue-400" />
                             )}
                         </button>
-
                     </div>
 
                     {/* Mobile menu button */}
@@ -76,7 +119,7 @@ const Header = () => {
                             aria-label="Toggle theme"
                         >
                             {theme === 'light' ? (
-                                <Sun className="h-5 w-5 text-yellow-500" />
+                                <Sun  className="h-5 w-5 text-yellow-500" />
                             ) : (
                                 <Moon className="h-5 w-5 text-blue-400" />
                             )}

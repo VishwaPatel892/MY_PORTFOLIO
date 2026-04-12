@@ -1,10 +1,18 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Youtube } from 'lucide-react';
 import { SiLeetcode } from 'react-icons/si';
+import { Helmet } from "react-helmet";
 
 const About = () => {
     return (
+<>
+              <Helmet>
+        <title>Home - Vishwa Patel</title>
+        <meta name="description" content="Vishwa Patel - Full Stack Developer" />
+      </Helmet>
         <section id="about" className="py-20 px-4 md:px-8 relative bg-white dark:bg-[#0B0212] transition-colors duration-300">
+
+            
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/5 to-transparent"></div>
 
             <div className="max-w-6xl mx-auto">
@@ -63,6 +71,7 @@ const About = () => {
                 </div>
             </div>
         </section>
+        </>
     );
 };
 

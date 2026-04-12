@@ -1,41 +1,40 @@
 import { motion } from 'framer-motion';
 import { Wrench } from 'lucide-react';
 import {
-    FaHtml5, FaReact, FaGithub, FaServer,
-    FaJs, FaNodeJs, FaCuttlefish, FaCss3Alt, FaGitAlt
+    FaHtml5, FaReact, FaJs, FaNodeJs,
+    FaCss3Alt, FaGitAlt, FaDocker
 } from 'react-icons/fa';
-import { SiTailwindcss, SiCplusplus, SiMongodb, SiPostman, SiFigma } from 'react-icons/si';
-import { VscVscode } from 'react-icons/vsc';
+import {
+    SiTailwindcss, SiMongodb, SiFigma,
+    SiRedis, SiNextdotjs, SiMui
+} from 'react-icons/si';
 
-const skillsList = [
-    // Frontend
-    { title: 'React.js',    category: 'Frontend',       description: 'UI Library',           icon: FaReact,       color: 'text-cyan-500 dark:text-cyan-400' },
-    { title: 'Tailwind CSS',category: 'Frontend',       description: 'Utility-first CSS',    icon: SiTailwindcss, color: 'text-sky-500 dark:text-cyan-400' },
-    { title: 'HTML5',       category: 'Frontend',       description: 'Structural Markup',    icon: FaHtml5,       color: 'text-orange-600 dark:text-orange-500' },
-    { title: 'CSS3',        category: 'Frontend',       description: 'Styling & Animations', icon: FaCss3Alt,     color: 'text-blue-600 dark:text-blue-500' },
-    { title: 'JavaScript',  category: 'Frontend',       description: 'Logic & Interactivity',icon: FaJs,          color: 'text-yellow-600 dark:text-yellow-500' },
-    // Backend
-    { title: 'Node.js',     category: 'Backend',        description: 'Server Runtime',       icon: FaNodeJs,      color: 'text-green-600 dark:text-green-500' },
-    { title: 'MongoDB',     category: 'Backend',        description: 'NoSQL Database',       icon: SiMongodb,     color: 'text-emerald-600 dark:text-emerald-500' },
-    { title: 'REST API',    category: 'Backend',        description: 'Web Services',         icon: FaServer,      color: 'text-purple-600 dark:text-purple-400' },
-    // Languages & Tools
-    { title: 'C',           category: 'Programming',    description: 'Systems Language',     icon: FaCuttlefish,  color: 'text-blue-600 dark:text-blue-400' },
-    { title: 'C++',         category: 'Programming',    description: 'Object-Oriented',      icon: SiCplusplus,   color: 'text-indigo-600 dark:text-indigo-400' },
-    { title: 'Postman',     category: 'Tools',          description: 'API Testing',          icon: SiPostman,     color: 'text-orange-600 dark:text-orange-500' },
-    { title: 'GitHub',      category: 'Tools',          description: 'Code Hosting',         icon: FaGithub,      color: 'text-gray-900 dark:text-white' },
-    { title: 'Git',         category: 'Tools',          description: 'Source Control',       icon: FaGitAlt,      color: 'text-orange-600 dark:text-orange-500' },
-    { title: 'VS Code',     category: 'Tools',          description: 'Code Editor',          icon: VscVscode,     color: 'text-blue-500 dark:text-blue-400' },
-    { title: 'Figma',       category: 'Tools',          description: 'UI/UX Design',         icon: SiFigma,       color: 'text-pink-500 dark:text-pink-400' },
+// Tree structure: each row is a level
+const treeRows = [
+    [
+        { title: 'HTML',       icon: FaHtml5,      color: '#E34F26' },
+        { title: 'CSS',        icon: FaCss3Alt,    color: '#1572B6' },
+    ],
+    [
+        { title: 'JavaScript', icon: FaJs,         color: '#F7DF1E' },
+    ],
+    [
+        { title: 'React',      icon: FaReact,      color: '#61DAFB' },
+        { title: 'Next.js',    icon: SiNextdotjs,  color: '#ffffff' },
+        { title: 'Tailwind',   icon: SiTailwindcss,color: '#38BDF8' },
+    ],
+    [
+        { title: 'Redis',      icon: SiRedis,      color: '#DC382D' },
+        { title: 'MongoDB',    icon: SiMongodb,    color: '#4DB33D' },
+        { title: 'Node.js',    icon: FaNodeJs,     color: '#339933' },
+    ],
+    [
+        { title: 'Docker',     icon: FaDocker,     color: '#2496ED' },
+        { title: 'Git',        icon: FaGitAlt,     color: '#F05032' },
+        { title: 'Figma',      icon: SiFigma,      color: '#A259FF' },
+        { title: 'Material UI',icon: SiMui,        color: '#007FFF' },
+    ],
 ];
-
-const categories = ['Frontend', 'Backend', 'Programming', 'Tools'];
-
-// Unique float params per card so they all drift independently
-const floatParams = skillsList.map((_, i) => ({
-    y: [0, -10 - (i % 4) * 3, 0],
-    duration: 2.8 + (i % 5) * 0.4,
-    delay: (i * 0.18) % 2.5,
-}));
 
 const Skills = () => {
     return (
@@ -74,32 +73,39 @@ const Skills = () => {
                     </p>
                 </motion.div>
 
-                {/* Cards Grid by Category */}
-                <div className="space-y-16">
-                    {categories.map((category) => (
-                        <div key={category} className="relative">
-                            <motion.h3 
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                {/* Tech Tree */}
+                <div className="flex flex-col items-center gap-0">
+                    {treeRows.map((row, rowIndex) => (
+                        <div key={rowIndex} className="flex flex-col items-center w-full">
+                            {/* Connector line going down from previous row */}
+                            {rowIndex > 0 && (
+                                <motion.div
+                                    initial={{ scaleY: 0, opacity: 0 }}
+                                    whileInView={{ scaleY: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4, delay: rowIndex * 0.1 }}
+                                    className="w-px h-10 bg-gradient-to-b from-pink-500/60 to-purple-500/60 origin-top"
+                                />
+                            )}
+
+                            {/* Row of cards with horizontal connectors */}
+                            <motion.div
+                                className="flex items-center justify-center gap-0 flex-wrap"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5 }}
-                                className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-8 border-b-2 border-pink-500/30 pb-2 inline-block"
+                                transition={{ duration: 0.5, delay: rowIndex * 0.12 }}
                             >
-                                {category}
-                            </motion.h3>
-                            <div className="flex flex-wrap justify-center gap-6">
-                                {skillsList.filter(s => s.category === category).map((skill, localIndex) => {
-                                    const globalIndex = skillsList.findIndex(s => s.title === skill.title);
-                                    return (
-                                        <SkillCard
-                                            key={globalIndex}
-                                            skill={skill}
-                                            index={globalIndex}
-                                            float={floatParams[globalIndex % floatParams.length]}
-                                        />
-                                    );
-                                })}
-                            </div>
+                                {row.map((skill, cardIndex) => (
+                                    <div key={cardIndex} className="flex items-center">
+                                        {/* Horizontal connector between cards */}
+                                        {cardIndex > 0 && (
+                                            <div className="w-6 md:w-10 h-px bg-gradient-to-r from-purple-500/50 to-pink-500/50" />
+                                        )}
+                                        <SkillCard skill={skill} rowIndex={rowIndex} cardIndex={cardIndex} />
+                                    </div>
+                                ))}
+                            </motion.div>
                         </div>
                     ))}
                 </div>
@@ -108,64 +114,40 @@ const Skills = () => {
     );
 };
 
-const SkillCard = ({ skill, index, float }) => {
+const SkillCard = ({ skill, rowIndex, cardIndex }) => {
     const Icon = skill.icon;
 
     return (
-        // Outer: bubble pop entrance
         <motion.div
-            initial={{ opacity: 0, scale: 0, y: 40 }}
-            whileInView={{
-                opacity: 1,
-                scale: [0, 1.18, 0.94, 1.06, 1],
-                y: 0,
-            }}
-            viewport={{ once: true }}
-            transition={{
-                delay: (index % 10) * 0.07,
-                duration: 0.65,
-                ease: 'easeOut',
-            }}
+            whileHover={{ scale: 1.08, y: -6 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+            className="group relative w-24 h-24 md:w-28 md:h-28 m-2
+                bg-white dark:bg-[#1a1a2e]
+                border border-gray-200 dark:border-white/10
+                rounded-2xl flex flex-col items-center justify-center
+                cursor-pointer shadow-md dark:shadow-none
+                hover:border-pink-500/50 dark:hover:border-pink-500/40
+                hover:shadow-xl hover:shadow-pink-500/20
+                transition-all duration-300"
         >
-            {/* Inner: continuous float */}
-            <motion.div
-                animate={{ y: float.y }}
-                transition={{
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    duration: float.duration,
-                    delay: float.delay,
-                    ease: 'easeInOut',
-                }}
+            {/* Glow overlay on hover */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500/0 to-purple-600/0 group-hover:from-pink-500/10 group-hover:to-purple-600/10 transition-all duration-300 pointer-events-none" />
+
+            {/* Shimmer ring */}
+            <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ boxShadow: 'inset 0 0 0 1px rgba(244,114,182,0.3)' }}
+            />
+
+            <div
+                className="mb-2 transition-transform duration-300 group-hover:scale-110 relative z-10"
+                style={{ color: skill.color }}
             >
-                {/* Card: hover interaction */}
-                <motion.div
-                    whileHover={{ scale: 1.08, y: -8 }}
-                    transition={{ type: 'spring', stiffness: 340, damping: 16 }}
-                    className="group relative w-40 bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-2xl px-5 py-6 flex flex-col items-center text-center cursor-pointer hover:border-pink-500/50 dark:hover:border-pink-500/40 hover:shadow-2xl hover:shadow-pink-500/20 shadow-md shadow-gray-100/50 dark:shadow-none transition-colors duration-300"
-                >
-                    {/* Glow overlay on hover */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500/0 to-purple-600/0 group-hover:from-pink-500/10 group-hover:to-purple-600/10 transition-all duration-300 pointer-events-none" />
-
-                    {/* Subtle shimmer ring */}
-                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{ boxShadow: 'inset 0 0 0 1px rgba(244,114,182,0.25)' }}
-                    />
-
-                    <div className={`mb-4 ${skill.color} transition-transform duration-300 group-hover:scale-110 relative z-10`}>
-                        <Icon className="w-9 h-9" />
-                    </div>
-                    <h3 className="text-gray-900 dark:text-gray-100 font-bold text-sm mb-1 relative z-10">
-                        {skill.title}
-                    </h3>
-                    <p className="text-pink-600 dark:text-pink-400/80 text-xs font-semibold mb-1 relative z-10">
-                        {skill.category}
-                    </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs relative z-10">
-                        {skill.description}
-                    </p>
-                </motion.div>
-            </motion.div>
+                <Icon className="w-9 h-9" />
+            </div>
+            <p className="text-gray-800 dark:text-gray-200 font-semibold text-xs text-center px-1 relative z-10 leading-tight">
+                {skill.title}
+            </p>
         </motion.div>
     );
 };

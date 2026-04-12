@@ -1,43 +1,22 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MessageSquare, Mail, User, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
-    const [result, setResult] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const formRef = useRef(null);
 
-    const onSubmit = async (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
-        setIsSubmitting(true);
-        setResult("Sending...");
-        
-        const formData = new FormData(event.target);
+        const data = new FormData(event.target);
+        const name    = data.get('name')    || '';
+        const email   = data.get('email')   || '';
+        const subject = data.get('subject') || 'Portfolio Inquiry';
+        const message = data.get('message') || '';
 
-        // Required Web3Forms access key (user needs to replace this)
-        formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
-
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                setResult("Message sent successfully! 🎉");
-                event.target.reset();
-            } else {
-                console.log("Error", data);
-                setResult(data.message);
-            }
-        } catch (error) {
-            console.error("Error", error);
-            setResult("Failed to send message.");
-        } finally {
-            setIsSubmitting(false);
-            setTimeout(() => setResult(""), 5000);
-        }
+        const body = `From: ${name}\nEmail: ${email}\n\n${message}`;
+        const mailto = `mailto:vishwa.patel.cg@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+        event.target.reset();
     };
 
     return (
@@ -97,14 +76,13 @@ const Contact = () => {
                         transition={{ duration: 0.5 }}
                         className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-10 border border-gray-100 dark:border-gray-700 relative"
                     >
-                        {/* Corner decoration */}
-                        <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full blur-2xl opacity-20"></div>
+
 
                         <form onSubmit={onSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                                        Your Name <span className="text-yellow-400 ml-1">✨</span>
+                                        Your Name
                                     </label>
                                     <input
                                         type="text"
@@ -116,7 +94,7 @@ const Contact = () => {
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                                        Email Address <span className="text-blue-400 ml-1">📧</span>
+                                        Email Address
                                     </label>
                                     <input
                                         type="email"
@@ -130,7 +108,7 @@ const Contact = () => {
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                                    Subject <span className="text-purple-400 ml-1">📝</span>
+                                    Subject
                                 </label>
                                 <input
                                     type="text"
@@ -143,34 +121,25 @@ const Contact = () => {
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                                    Your Message <span className="text-red-400 ml-1">💌</span>
+                                    Your Message
                                 </label>
                                 <textarea
                                     name="message"
                                     required
                                     rows="4"
                                     placeholder="Tell me what's on your mind~"
-                                    className="w-full p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 dark:focus:ring-pink-900 outline-none transition-all text-gray-800 dark:text-white placeholder-gray-400"
+                                    className="w-full p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 dark:focus:ring-pink-900 outline-none transition-all text-gray-800 dark:text-white placeholder-gray-400 resize-none"
                                 ></textarea>
                             </div>
 
-                            <div className="flex items-center justify-between pt-2">
-                                <p className={`text-sm font-medium transition-opacity duration-300 ${
-                                    result.includes('successfully') ? 'text-green-500' : 
-                                    result.includes('Failed') || result.includes('Error') ? 'text-red-500' : 'text-gray-500'
-                                }`}>
-                                    {result}
-                                </p>
+                            <div className="flex items-center justify-end pt-2">
                                 <motion.button
                                     type="submit"
-                                    disabled={isSubmitting}
-                                    whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
-                                    whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                                    className={`px-8 py-3 rounded-full text-white font-bold shadow-lg transition-all duration-300 flex items-center space-x-2 ${
-                                        isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-rose-500 hover:shadow-pink-500/30'
-                                    }`}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-8 py-3 rounded-full text-white font-bold shadow-lg transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:shadow-pink-500/30"
                                 >
-                                    <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                                    <span>Send Message</span>
                                     <Send className="h-4 w-4" />
                                 </motion.button>
                             </div>
