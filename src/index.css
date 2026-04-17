@@ -10,6 +10,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
   /* Deep Space Purple Theme - Default to Light, override in Dark */
   background-color: #f9fafb;
   /* Light mode background */
@@ -57,6 +58,60 @@ textarea {
     color: transparent !important;
     display: inline-block;
   }
+
+  .bg-grid-pattern {
+    background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.03) 0,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 16px
+    );
+    background-size: 22.6px 22.6px;
+    animation: diagonal-pan 15s linear infinite;
+  }
+
+  .text-glow-accent {
+    text-shadow: 0 0 15px rgba(124, 92, 255, 0.6), 0 0 30px rgba(124, 92, 255, 0.3);
+  }
+
+  .text-glow-pulse {
+    animation: neon-pulse 3s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes diagonal-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(124, 92, 255, 0.2), 0 0 20px rgba(124, 92, 255, 0.1); }
+  50% { text-shadow: 0 0 15px rgba(124, 92, 255, 0.5), 0 0 30px rgba(124, 92, 255, 0.3), 0 0 40px rgba(56, 189, 248, 0.2); }
+}
+
+@keyframes scan-line {
+  0% { left: -10%; opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { left: 110%; opacity: 0; }
+}
+
+.animate-scan-line {
+  animation: scan-line 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes glitch-intro {
+  0% { opacity: 0; transform: translate(-2px, 2px); filter: blur(4px); }
+  50% { opacity: 1; transform: translate(2px, -1px); filter: blur(0px); }
+  60% { opacity: 0; transform: translate(-1px, 2px); }
+  70% { opacity: 1; transform: translate(2px, -2px); }
+  80% { opacity: 0; transform: translate(-2px, 1px); filter: blur(2px); }
+  100% { opacity: 1; transform: translate(0); filter: blur(0); }
+}
+
+.animate-glitch-intro {
+  animation: glitch-intro 0.3s ease-out forwards;
 }
 
 

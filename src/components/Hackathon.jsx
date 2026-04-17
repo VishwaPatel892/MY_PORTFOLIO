@@ -1,243 +1,305 @@
 import { motion } from 'framer-motion';
-import { Trophy, ExternalLink, Github, Zap, Users, Calendar } from 'lucide-react';
+import { Github, ExternalLink, Award } from 'lucide-react';
 
+/* ── Data ── */
 const hackathons = [
     {
         id: 1,
-        title: 'SmartAI Factory',
-        event: 'Hackathon 2025',
-        team: 'CodeCrusaders',
-        date: '2025',
+        year: '2026',
+        event: 'Ganpat University',
+        achievement: 'AI Cost Intelligence — 2nd Runner Up',
+        project: 'AI Cost Intelligence Dashboard',
         description:
-            'An AI-powered smart factory management system built during a hackathon. Features real-time monitoring, predictive maintenance alerts, and machine performance dashboards.',
-        tags: ['React', 'AI', 'Dashboard', 'Real-time', 'Netlify'],
-        github: 'https://github.com/VishwaPatel892/PS005-Codecrusaders',
-        live: 'https://smartfactoryai.netlify.app/welcome',
-        badge: '🏆 Hackathon',
-        color: 'from-pink-500 via-purple-500 to-indigo-600',
-        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
+            'An intelligent dashboard designed to analyze and predict costs using AI models. Empowers businesses to make data-driven financial decisions with actionable insights. Built and deployed at Ganpat University hackathon, winning 2nd Runner Up.',
+        tags: ['AI', 'React', 'Analytics', 'Vercel', 'Cost Intelligence'],
+        github: 'https://github.com/VishwaPatel892/Al-Cost-Intelligence-Dashboard',
+        live: 'https://al-cost-intelligence-dashboard.vercel.app/',
+        certificate: null,
+        photo: '/WhatsApp Image 2026-04-16 at 14.51.17.jpeg',
+        badge: '🥉 2nd Runner Up',
+        accentColor: '#a855f7',
+        glowColor: 'rgba(168,85,247,0.25)',
+        photoRight: true,
     },
     {
         id: 2,
-        title: 'Fleet Management System',
+        year: '2026',
+        event: 'Sangam University',
+        achievement: 'SmartAI Factory — Finalist',
+        project: 'Smart Factory Management System',
+        description:
+            'An AI-powered smart factory management system representing Team Code Crusaders at Sangam University Hackathon 2026. Features real-time monitoring, predictive maintenance alerts, and machine performance dashboards for optimized industrial operations.',
+        tags: ['React', 'AI', 'Dashboard', 'Real-time', 'Netlify'],
+        github: 'https://github.com/VishwaPatel892/PS005-Codecrusaders',
+        live: 'https://smartfactoryai.netlify.app/welcome',
+        certificate: null,
+        photo: '/WhatsApp Image 2026-04-07 at 18.33.31.jpeg',
+        badge: '🏁 Finalist',
+        accentColor: '#ec4899',
+        glowColor: 'rgba(236,72,153,0.25)',
+        photoRight: false,
+    },
+    {
+        id: 3,
+        year: '2025',
         event: 'Hackathon 2025',
-        team: 'CodeCrusaders',
-        date: '2025',
+        achievement: 'Fleet Management System — Hackathon',
+        project: 'Smart Fleet Management',
         description:
             'A smart fleet management system built during a hackathon. Enables real-time vehicle tracking, route optimization, driver management, and fleet analytics for efficient logistics operations.',
         tags: ['React', 'Dashboard', 'Fleet', 'Analytics', 'Real-time'],
         github: 'https://github.com/VishwaPatel892/PS005-Codecrusaders',
         live: null,
+        certificate: null,
+        photo: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop',
         badge: '🚀 Hackathon',
-        color: 'from-purple-500 via-indigo-500 to-blue-600',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop',
-        comingSoon: false,
-    },
-    {
-        id: 3,
-        title: 'AI Cost Intelligence Dashboard',
-        event: 'Hackathon 2026',
-        team: 'CodeCrusaders',
-        date: '2026',
-        description:
-            'An intelligent dashboard designed to analyze and predict costs using AI models. Empowers businesses to make data-driven financial decisions with actionable insights.',
-        tags: ['AI', 'React', 'Analytics', 'Vercel'],
-        github: 'https://github.com/VishwaPatel892/Al-Cost-Intelligence-Dashboard',
-        live: 'https://al-cost-intelligence-dashboard.vercel.app/',
-        badge: '🏆 Winner',
-        color: 'from-blue-600 via-teal-500 to-emerald-500',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
-        comingSoon: false,
+        accentColor: '#7c5cff',
+        glowColor: 'rgba(124,92,255,0.25)',
+        photoRight: true,
     },
     {
         id: 4,
-        title: 'AI Adaptive Onboarding',
+        year: '2026',
         event: 'Hackathon 2026',
-        team: 'CodeCrusaders',
-        date: '2026',
+        achievement: 'AI Adaptive Onboarding — Featured',
+        project: 'AI Adaptive Onboarding Platform',
         description:
-            'An AI-powered onboarding platform that automatically personalizes the learning experience and adapts to user interaction, streamlining new user orientation.',
-        tags: ['AI', 'React', 'Onboarding', 'Adaptive'],
+            'An AI-powered onboarding platform that automatically personalizes the learning experience and adapts to user interaction, streamlining new user orientation for modern SaaS products.',
+        tags: ['AI', 'React', 'Onboarding', 'Adaptive', 'Vercel'],
         github: 'https://github.com/VishwaPatel892/ai-adaptive-onboarding',
         live: 'https://ai-adaptive-onboarding-cb1e.vercel.app/',
+        certificate: null,
+        photo: 'https://images.unsplash.com/photo-1536412597336-aea7ddb2ee03?q=80&w=2070&auto=format&fit=crop',
         badge: '🌟 Featured',
-        color: 'from-orange-500 via-red-500 to-pink-600',
-        image: 'https://images.unsplash.com/photo-1536412597336-aea7ddb2ee03?q=80&w=2070&auto=format&fit=crop',
-        comingSoon: false,
+        accentColor: '#f472b6',
+        glowColor: 'rgba(244,114,182,0.25)',
+        photoRight: false,
     },
 ];
 
-const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+/* ─── Single hackathon card ─── */
+const HackathonCard = ({ hack, index }) => {
+    const infoPanel = (
+        <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
+            {/* Year · Event */}
+            <div className="flex items-center gap-2 mb-5">
+                <span className="text-[10px] font-mono tracking-[0.2em] uppercase" style={{ color: hack.accentColor }}>
+                    {hack.year}
+                </span>
+                <span className="text-[#555] text-[10px] font-mono">·</span>
+                <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#737373]">
+                    {hack.event}
+                </span>
+            </div>
+
+            {/* Achievement title */}
+            <h3 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
+                {hack.achievement}
+            </h3>
+
+            {/* Project name accent */}
+            <p className="text-[10px] font-mono tracking-[0.15em] uppercase mb-5" style={{ color: hack.accentColor }}>
+                {hack.project}
+            </p>
+
+            {/* Description */}
+            <p className="text-[#a3a3a3] text-sm leading-relaxed mb-6 max-w-md">
+                {hack.description}
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-7">
+                {hack.tags.map((tag) => (
+                    <span
+                        key={tag}
+                        className="px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-widest"
+                        style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: `1px solid ${hack.accentColor}33`,
+                            color: hack.accentColor,
+                        }}
+                    >
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col gap-3 max-w-xs">
+                {hack.github && (
+                    <a
+                        href={hack.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest transition-all duration-300"
+                        style={{ background: 'transparent', border: '1.5px solid rgba(255,255,255,0.15)', color: '#fff' }}
+                        onMouseEnter={(e) => { e.currentTarget.style.borderColor = hack.accentColor; e.currentTarget.style.color = hack.accentColor; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = '#fff'; }}
+                    >
+                        <Github size={13} /> GitHub
+                    </a>
+                )}
+                {hack.live && (
+                    <a
+                        href={hack.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest transition-all duration-300"
+                        style={{ background: hack.accentColor, color: '#fff', boxShadow: `0 0 20px ${hack.glowColor}` }}
+                        onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+                    >
+                        <ExternalLink size={13} /> Live Demo
+                    </a>
+                )}
+                {hack.certificate && (
+                    <a
+                        href={hack.certificate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest transition-all duration-300"
+                        style={{ background: 'transparent', border: '1.5px solid rgba(34,197,94,0.4)', color: '#4ade80' }}
+                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(34,197,94,0.08)'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                    >
+                        <Award size={13} /> Certificate
+                    </a>
+                )}
+            </div>
+        </div>
+    );
+
+
+
+    return (
+        <motion.div
+            className="flex flex-col lg:flex-row rounded-3xl overflow-hidden"
+            style={{
+                background: 'rgba(11,11,15,0.85)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                boxShadow: `0 0 50px ${hack.glowColor}, 0 0 0 1px rgba(255,255,255,0.03)`,
+                minHeight: '420px',
+            }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+        >
+            {/* Info panel */}
+            <div
+                className="flex-1 flex flex-col justify-center"
+                style={{ order: hack.photoRight ? 1 : 2 }}
+            >
+                {infoPanel}
+            </div>
+
+            {/* Photo panel */}
+            <div
+                className="relative flex-shrink-0 min-h-[280px]"
+                style={{
+                    width: '42%',
+                    order: hack.photoRight ? 2 : 1,
+                }}
+            >
+                {/* Badge */}
+                <div className="absolute top-4 right-4 z-20">
+                    <span
+                        className="px-3 py-1.5 rounded-full text-[9px] font-mono tracking-[0.1em] uppercase backdrop-blur-md"
+                        style={{ background: 'rgba(10,10,10,0.75)', border: `1px solid ${hack.accentColor}44`, color: hack.accentColor }}
+                    >
+                        ● Hackathon
+                    </span>
+                </div>
+
+                {/* Photo */}
+                <img
+                    src={hack.photo}
+                    alt={hack.achievement}
+                    className="w-full h-full object-cover"
+                    style={{ minHeight: '320px' }}
+                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'; }}
+                />
+
+                {/* Gradient overlay */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: hack.photoRight
+                            ? 'linear-gradient(to right, rgba(11,11,15,0.5) 0%, transparent 35%)'
+                            : 'linear-gradient(to left, rgba(11,11,15,0.5) 0%, transparent 35%)',
+                    }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0F]/30 via-transparent to-transparent" />
+
+                {/* Achievement badge bottom */}
+                <div className="absolute bottom-4 left-4 z-20">
+                    <span
+                        className="px-3 py-1.5 rounded-full text-xs font-bold backdrop-blur-md"
+                        style={{ background: `${hack.accentColor}22`, border: `1px solid ${hack.accentColor}55`, color: '#fff' }}
+                    >
+                        {hack.badge}
+                    </span>
+                </div>
+            </div>
+        </motion.div>
+    );
 };
 
-const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.92 },
-    visible: {
-        opacity: 1, y: 0, scale: 1,
-        transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-    },
-};
-
+/* ─── Main Section ─── */
 const Hackathon = () => {
     return (
-        <section
-            id="hackathon"
-            className="py-24 px-4 md:px-8 bg-white dark:bg-[#0B0212] transition-colors duration-300 relative overflow-hidden"
-        >
-            {/* Top border */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-500/30 to-transparent" />
-
-            {/* Blobs */}
-            <div className="absolute top-10 left-20 w-80 h-80 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none" />
-            <div className="absolute bottom-10 right-20 w-80 h-80 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none" />
+        <section id="hackathon" className="relative overflow-hidden py-20 px-4 md:px-10">
+            {/* Ambient glow */}
+            <div
+                className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                style={{
+                    background:
+                        'radial-gradient(ellipse 50% 40% at 80% 20%, rgba(168,85,247,0.06) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 20% 80%, rgba(236,72,153,0.05) 0%, transparent 70%)',
+                }}
+            />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
                     className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7 }}
                 >
-                    <span className="text-pink-500 dark:text-pink-400 font-semibold tracking-widest uppercase text-sm">
+                    <span
+                        className="text-[10px] font-mono tracking-[0.35em] uppercase"
+                        style={{ color: '#7c5cff', textShadow: '0 0 12px rgba(124,92,255,0.5)' }}
+                    >
                         Competitive
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
+                    <h2 className="text-5xl md:text-7xl font-black text-white mt-3 tracking-tight">
                         Hackathon{' '}
-                        <span className="text-gradient">
+                        <span
+                            style={{
+                                background: 'linear-gradient(to right, #ec4899, #a855f7)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                                display: 'inline-block',
+                            }}
+                        >
                             Projects
-                        </span>{' '}
-                        <Trophy className="inline-block h-9 w-9 text-yellow-400 animate-bounce ml-2" />
+                        </span>
                     </h2>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-                        Projects built under pressure — from idea to deployment in hours. Fast, collaborative, and impactful.
+                    <p className="mt-4 text-sm text-[#a3a3a3] max-w-xl mx-auto font-light">
+                        Projects built under pressure. Idea to deployment in hours — fast, collaborative, and impactful.
                     </p>
                 </motion.div>
 
-                {/* Cards */}
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
-                >
-                    {hackathons.map((project) => (
-                        <HackathonCard key={project.id} project={project} />
+                {/* Stacked cards */}
+                <div className="flex flex-col gap-8">
+                    {hackathons.map((hack, i) => (
+                        <HackathonCard key={hack.id} hack={hack} index={i} />
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
-    );
-};
-
-const HackathonCard = ({ project }) => {
-    return (
-        <motion.div
-            variants={cardVariants}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 280, damping: 20 }}
-            className="group relative bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-pink-500/15 dark:hover:border-pink-500/30 transition-all duration-300"
-        >
-            {/* Gradient image banner */}
-            <div className={`relative h-52 bg-gradient-to-br ${project.color} overflow-hidden`}>
-                {project.image && (
-                    <img
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500"
-                    />
-                )}
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-                {/* Badge top-right */}
-                <div className="absolute top-4 right-4 z-10">
-                    <span className="px-3 py-1.5 bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-bold rounded-full tracking-wider">
-                        {project.badge}
-                    </span>
-                </div>
-
-                {/* Title over image */}
-                <div className="absolute bottom-5 left-6 z-10">
-                    <h3 className="text-2xl font-black text-white tracking-tight drop-shadow-lg">
-                        {project.title}
-                    </h3>
-                </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-6">
-                {/* Meta info */}
-                <div className="flex flex-wrap gap-4 mb-4 text-xs text-gray-500 dark:text-gray-400">
-                    <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-pink-400" />
-                        {project.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                        <Users className="w-3.5 h-3.5 text-purple-400" />
-                        {project.team}
-                    </span>
-                    <span className="flex items-center gap-1">
-                        <Zap className="w-3.5 h-3.5 text-yellow-400" />
-                        {project.event}
-                    </span>
-                </div>
-
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
-                    {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map((tag, i) => (
-                        <span
-                            key={i}
-                            className="px-2.5 py-1 bg-pink-500/10 dark:bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-300 rounded-full text-xs font-semibold"
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-
-                {/* Links */}
-                {!project.comingSoon ? (
-                    <div className="flex gap-4 pt-4 border-t border-gray-100 dark:border-white/5">
-                        {project.live && (
-                            <a
-                                href={project.live}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white text-sm font-semibold hover:opacity-90 hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
-                            >
-                                <ExternalLink className="w-3.5 h-3.5" />
-                                Live Demo
-                            </a>
-                        )}
-                        {project.github && (
-                            <a
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-semibold hover:border-pink-500/40 hover:text-pink-500 dark:hover:text-pink-400 transition-all duration-300"
-                            >
-                                <Github className="w-3.5 h-3.5" />
-                                Source Code
-                            </a>
-                        )}
-                    </div>
-                ) : (
-                    <div className="pt-4 border-t border-gray-100 dark:border-white/5">
-                        <span className="text-sm text-gray-400 dark:text-gray-500 italic">
-                            🔨 Details coming soon...
-                        </span>
-                    </div>
-                )}
-            </div>
-        </motion.div>
     );
 };
 

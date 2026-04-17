@@ -24,7 +24,7 @@ import LiveDemo from './components/LiveDemo';
 
 // Main Layout Component
 const MainLayout = () => (
-  <div className="min-h-screen text-gray-800 dark:text-gray-200 transition-colors duration-300 relative overflow-x-hidden">
+  <div className="min-h-screen text-gray-800 dark:text-gray-200 transition-colors duration-300 relative">
     <CustomCursor />
     <Background3D />
     <Header />

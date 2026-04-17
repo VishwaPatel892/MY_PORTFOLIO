@@ -1,155 +1,463 @@
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Wrench } from 'lucide-react';
 import {
-    FaHtml5, FaReact, FaJs, FaNodeJs,
-    FaCss3Alt, FaGitAlt, FaDocker
+  FaReact, FaJs, FaNodeJs, FaCss3Alt, FaHtml5,
+  FaGitAlt, FaGithub, FaDocker, FaNpm, FaPython,
 } from 'react-icons/fa';
 import {
-    SiTailwindcss, SiMongodb, SiFigma,
-    SiRedis, SiNextdotjs, SiMui
+  SiTailwindcss, SiTypescript, SiNextdotjs, SiMongodb,
+  SiExpress, SiPostman, SiVite, SiFirebase, SiVercel, SiFramer,
 } from 'react-icons/si';
 
-// Tree structure: each row is a level
-const treeRows = [
-    [
-        { title: 'HTML',       icon: FaHtml5,      color: '#E34F26' },
-        { title: 'CSS',        icon: FaCss3Alt,    color: '#1572B6' },
+/* ─────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────── */
+const CATEGORIES = [
+  {
+    id: 'frontend',
+    label: 'Frontend',
+    skills: [
+      { title: 'HTML5',      icon: <FaHtml5 /> },
+      { title: 'CSS3',       icon: <FaCss3Alt /> },
+      { title: 'JavaScript', icon: <FaJs /> },
+      { title: 'TypeScript', icon: <SiTypescript /> },
+      { title: 'React',      icon: <FaReact /> },
+      { title: 'Next.js',    icon: <SiNextdotjs /> },
+      { title: 'Tailwind',   icon: <SiTailwindcss /> },
+      { title: 'Framer',     icon: <SiFramer /> },
     ],
-    [
-        { title: 'JavaScript', icon: FaJs,         color: '#F7DF1E' },
+  },
+  {
+    id: 'backend',
+    label: 'Backend',
+    skills: [
+      { title: 'Node.js',  icon: <FaNodeJs /> },
+      { title: 'Express',  icon: <SiExpress /> },
+      { title: 'MongoDB',  icon: <SiMongodb /> },
+      { title: 'Firebase', icon: <SiFirebase /> },
+      { title: 'Python',   icon: <FaPython /> },
     ],
-    [
-        { title: 'React',      icon: FaReact,      color: '#61DAFB' },
-        { title: 'Next.js',    icon: SiNextdotjs,  color: '#ffffff' },
-        { title: 'Tailwind',   icon: SiTailwindcss,color: '#38BDF8' },
+  },
+  {
+    id: 'tools',
+    label: 'Tools',
+    skills: [
+      { title: 'Git',     icon: <FaGitAlt /> },
+      { title: 'GitHub',  icon: <FaGithub /> },
+      { title: 'Docker',  icon: <FaDocker /> },
+      { title: 'Vite',    icon: <SiVite /> },
+      { title: 'Postman', icon: <SiPostman /> },
+      { title: 'npm',     icon: <FaNpm /> },
+      { title: 'Vercel',  icon: <SiVercel /> },
     ],
-    [
-        { title: 'Redis',      icon: SiRedis,      color: '#DC382D' },
-        { title: 'MongoDB',    icon: SiMongodb,    color: '#4DB33D' },
-        { title: 'Node.js',    icon: FaNodeJs,     color: '#339933' },
-    ],
-    [
-        { title: 'Docker',     icon: FaDocker,     color: '#2496ED' },
-        { title: 'Git',        icon: FaGitAlt,     color: '#F05032' },
-        { title: 'Figma',      icon: SiFigma,      color: '#A259FF' },
-        { title: 'Material UI',icon: SiMui,        color: '#007FFF' },
-    ],
+  },
 ];
 
-const Skills = () => {
-    return (
-        <section
-            id="skills"
-            className="py-24 bg-gray-50 dark:bg-[#0B0212] transition-colors duration-300 relative overflow-hidden"
+/* ─────────────────────────────────────────────
+   SINGLE ORBIT RING
+   Each card is placed at: rotateY(angle) translateZ(radius)
+   The whole ring spins via a CSS animation on the scene wrapper.
+───────────────────────────────────────────── */
+function OrbitRing({ category, sectionIndex }) {
+  const [paused, setPaused] = useState(false);
+  const n = category.skills.length;
+
+  /* Radius scales with card count so cards never overlap */
+  const radius = Math.round(80 + n * 14);
+  const duration = 28 + sectionIndex * 4;
+
+  return (
+    <motion.div
+      className="sk-column"
+      initial={{ opacity: 0, y: 56 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.85, delay: sectionIndex * 0.18, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* ── Label ── */}
+      <div className="sk-label-row">
+        <span className="sk-label-text">{category.label}</span>
+        <span className="sk-label-count">{n} tech</span>
+      </div>
+
+      {/* ── 3-D viewport ── */}
+      <div
+        className="sk-viewport"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        style={{ overflow: 'visible' }}
+      >
+        {/* Spinning ring — NO tilt, perfectly flat/straight */}
+        <div
+          className="sk-ring"
+          style={{
+            animationDuration: `${duration}s`,
+            animationPlayState: paused ? 'paused' : 'running',
+          }}
         >
-            {/* Decorative top border */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/5 to-transparent" />
-
-            {/* Background blobs */}
-            <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none" />
-            <div className="absolute bottom-20 right-10 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none" />
-
-            <div className="max-w-6xl mx-auto px-6 md:px-10 relative z-10">
-                {/* Section Header */}
+          {category.skills.map((skill, i) => {
+            const angleDeg = (360 / n) * i;
+            return (
+              <div
+                key={skill.title}
+                className="sk-card"
+                style={{
+                  transform: `rotateY(${angleDeg}deg) translateZ(${radius}px)`,
+                  '--counter': `${-angleDeg}deg`,
+                }}
+              >
                 <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                  className="sk-card-face"
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 22 }}
                 >
-                    <span className="text-pink-500 dark:text-pink-400 font-semibold tracking-widest uppercase text-sm">
-                        Expertise
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">
-                        Skills &{' '}
-                        <span className="text-gradient">
-                            Technologies
-                        </span>{' '}
-                        <Wrench className="inline-block h-8 w-8 text-gray-400 dark:text-gray-500 animate-pulse ml-2" />
-                    </h2>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-                        A comprehensive toolkit of modern technologies and frameworks that I use to bring ideas to life.
-                    </p>
+                  <span className="sk-icon">{skill.icon}</span>
+                  <span className="sk-title">{skill.title}</span>
                 </motion.div>
+              </div>
+            );
+          })}
+        </div>
 
-                {/* Tech Tree */}
-                <div className="flex flex-col items-center gap-0">
-                    {treeRows.map((row, rowIndex) => (
-                        <div key={rowIndex} className="flex flex-col items-center w-full">
-                            {/* Connector line going down from previous row */}
-                            {rowIndex > 0 && (
-                                <motion.div
-                                    initial={{ scaleY: 0, opacity: 0 }}
-                                    whileInView={{ scaleY: 1, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: rowIndex * 0.1 }}
-                                    className="w-px h-10 bg-gradient-to-b from-pink-500/60 to-purple-500/60 origin-top"
-                                />
-                            )}
+        {/* Central glow disc */}
+        <div className="sk-disc" />
 
-                            {/* Row of cards with horizontal connectors */}
-                            <motion.div
-                                className="flex items-center justify-center gap-0 flex-wrap"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: rowIndex * 0.12 }}
-                            >
-                                {row.map((skill, cardIndex) => (
-                                    <div key={cardIndex} className="flex items-center">
-                                        {/* Horizontal connector between cards */}
-                                        {cardIndex > 0 && (
-                                            <div className="w-6 md:w-10 h-px bg-gradient-to-r from-purple-500/50 to-pink-500/50" />
-                                        )}
-                                        <SkillCard skill={skill} rowIndex={rowIndex} cardIndex={cardIndex} />
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
-
-const SkillCard = ({ skill, rowIndex, cardIndex }) => {
-    const Icon = skill.icon;
-
-    return (
+        {/* Pause badge */}
         <motion.div
-            whileHover={{ scale: 1.08, y: -6 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-            className="group relative w-24 h-24 md:w-28 md:h-28 m-2
-                bg-white dark:bg-[#1a1a2e]
-                border border-gray-200 dark:border-white/10
-                rounded-2xl flex flex-col items-center justify-center
-                cursor-pointer shadow-md dark:shadow-none
-                hover:border-pink-500/50 dark:hover:border-pink-500/40
-                hover:shadow-xl hover:shadow-pink-500/20
-                transition-all duration-300"
+          className="sk-pause-badge"
+          animate={{ opacity: paused ? 1 : 0, y: paused ? 0 : 4 }}
+          transition={{ duration: 0.25 }}
         >
-            {/* Glow overlay on hover */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500/0 to-purple-600/0 group-hover:from-pink-500/10 group-hover:to-purple-600/10 transition-all duration-300 pointer-events-none" />
-
-            {/* Shimmer ring */}
-            <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ boxShadow: 'inset 0 0 0 1px rgba(244,114,182,0.3)' }}
-            />
-
-            <div
-                className="mb-2 transition-transform duration-300 group-hover:scale-110 relative z-10"
-                style={{ color: skill.color }}
-            >
-                <Icon className="w-9 h-9" />
-            </div>
-            <p className="text-gray-800 dark:text-gray-200 font-semibold text-xs text-center px-1 relative z-10 leading-tight">
-                {skill.title}
-            </p>
+          ⏸ paused
         </motion.div>
-    );
-};
+      </div>
+    </motion.div>
+  );
+}
 
-export default Skills;
+/* ─────────────────────────────────────────────
+   ROOT
+───────────────────────────────────────────── */
+export default function Skills() {
+  return (
+    <section id="skills" className="sk-root">
+      {/* Ambient blobs only — no grid */}
+      <div className="sk-blob sk-blob-1" />
+      <div className="sk-blob sk-blob-2" />
+      <div className="sk-blob sk-blob-3" />
+
+      <div className="sk-inner">
+        {/* ── Header ── */}
+        <motion.header
+          className="sk-header"
+          initial={{ opacity: 0, y: -24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="sk-eyebrow">What I work with</p>
+          <h2 className="sk-heading">
+            My <span className="sk-gradient-text">Tech Stack</span>
+          </h2>
+          <p className="sk-sub">
+            Three orbiting rings — each a layer of the stack
+          </p>
+        </motion.header>
+
+        {/* ── Three rings ── */}
+        <div className="sk-rings">
+          {CATEGORIES.map((cat, i) => (
+            <OrbitRing key={cat.id} category={cat} sectionIndex={i} />
+          ))}
+        </div>
+      </div>
+
+      {/* ══ ALL STYLES (scoped via sk- prefix) ══ */}
+      <style>{`
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        /* ── Keyframes ── */
+        @keyframes orbitSpin {
+          from { transform: rotateY(0deg); }
+          to   { transform: rotateY(360deg); }
+        }
+        @keyframes blobPulse {
+          0%, 100% { transform: scale(1);    opacity: 0.7; }
+          50%       { transform: scale(1.12); opacity: 1;   }
+        }
+
+        /* ── Root section ── */
+        .sk-root {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          background: transparent;
+          overflow: hidden;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          padding: 7rem 1.5rem 11rem;
+          box-sizing: border-box;
+          font-family: 'Inter', system-ui, sans-serif;
+        }
+
+
+        /* ── Ambient blobs (subtle, so galaxy still shows) ── */
+        .sk-blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(130px);
+          pointer-events: none;
+          z-index: 0;
+          animation: blobPulse var(--dur, 10s) ease-in-out infinite;
+        }
+        .sk-blob-1 {
+          width: 600px; height: 600px;
+          background: radial-gradient(circle, rgba(124,92,255,0.07) 0%, transparent 70%);
+          top: -150px; left: -200px;
+          --dur: 12s;
+        }
+        .sk-blob-2 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(236,72,153,0.05) 0%, transparent 70%);
+          top: 40%; right: -160px;
+          --dur: 15s;
+        }
+        .sk-blob-3 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(217,70,239,0.04) 0%, transparent 70%);
+          bottom: -120px; left: 30%;
+          --dur: 9s;
+        }
+
+        /* ── Inner content ── */
+        .sk-inner {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          max-width: 1280px;
+        }
+
+        /* ── Header ── */
+        .sk-header {
+          text-align: center;
+          margin-bottom: 3.5rem;
+        }
+        .sk-eyebrow {
+          font-size: 0.65rem;
+          letter-spacing: 0.35em;
+          text-transform: uppercase;
+          color: #7c5cff;
+          font-weight: 600;
+          margin: 0 0 0.8rem;
+          text-shadow: 0 0 12px rgba(124,92,255,0.5);
+        }
+        .sk-heading {
+          font-size: clamp(2.6rem, 5vw, 4.5rem);
+          font-weight: 900;
+          color: #ffffff;
+          margin: 0 0 0.75rem;
+          line-height: 1.06;
+          letter-spacing: -0.04em;
+        }
+        .sk-gradient-text {
+          background: linear-gradient(to right, #ec4899, #a855f7);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+        }
+        .sk-sub {
+          font-size: 0.75rem;
+          color: rgba(163,163,163,0.7);
+          margin: 0;
+          letter-spacing: 0.08em;
+          font-family: 'JetBrains Mono', 'Fira Code', monospace;
+          text-transform: uppercase;
+        }
+
+        /* ── Vertical Stack Layout ── */
+        .sk-rings {
+          display: flex;
+          flex-direction: column;
+          gap: 6rem;
+          align-items: center;
+          width: 100%;
+        }
+
+        /* ── One section ── */
+        .sk-column {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+          width: 100%;
+          max-width: 800px;
+        }
+
+        /* ── Column label row ── */
+        .sk-label-row {
+          display: flex;
+          align-items: baseline;
+          gap: 0.6rem;
+          margin-bottom: 0.5rem;
+        }
+        .sk-label-text {
+          font-size: 1.1rem;
+          font-weight: 800;
+          color: #ffffff;
+          letter-spacing: -0.02em;
+          text-transform: uppercase;
+        }
+        .sk-label-count {
+          font-size: 0.58rem;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(124,92,255,0.7);
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ── 3-D viewport (perspective) ── */
+        .sk-viewport {
+          position: relative;
+          width: 100%;
+          height: 340px;
+          perspective: 820px;
+          perspective-origin: 50% 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: visible;
+        }
+
+        /* ── Spinning ring ── */
+        /* The viewport uses flex centering, so sk-ring sits at center.
+           We do NOT use position:absolute with top/left — flex handles it. */
+        .sk-ring {
+          flex-shrink: 0;
+          width: 1px;
+          height: 1px;
+          transform-style: preserve-3d;
+          animation: orbitSpin linear infinite;
+          /* duration set inline */
+        }
+
+        /* ── Each card slot ── */
+        /* Cards radiate from the ring's 1×1 origin.
+           Shift left and up by half card size so each card is
+           centred ON its angle position, not offset from corner. */
+        .sk-card {
+          position: absolute;
+          width: 96px;
+          height: 112px;
+          top: -56px;   /* -height/2 */
+          left: -48px;  /* -width/2  */
+          transform-style: preserve-3d;
+          cursor: pointer;
+        }
+
+        /* ── Card face ── */
+        .sk-card-face {
+          width: 100%;
+          height: 100%;
+          transform: rotateY(var(--counter));
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+
+          /* Glassmorphism */
+          background: rgba(11, 11, 15, 0.65);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(124,92,255,0.12);
+          border-radius: 18px;
+          box-shadow:
+            0 4px 24px rgba(0,0,0,0.55),
+            inset 0 1px 0 rgba(255,255,255,0.045);
+          transition: border-color 0.35s ease, box-shadow 0.35s ease;
+
+          /* Subtle top gloss */
+          background-image: linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.04) 0%,
+            transparent 45%
+          );
+        }
+        .sk-card:hover .sk-card-face {
+          border-color: rgba(124,92,255,0.38);
+          box-shadow:
+            0 0 0 1px rgba(124,92,255,0.22),
+            0 0 28px rgba(124,92,255,0.35),
+            0 12px 40px rgba(0,0,0,0.7),
+            inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+
+        /* ── Icon ── */
+        .sk-icon {
+          font-size: 2.2rem;
+          color: #a890ff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: color 0.3s ease, filter 0.3s ease;
+        }
+        .sk-card:hover .sk-icon {
+          color: #d4c5ff;
+          filter: drop-shadow(0 0 10px rgba(124,92,255,0.7));
+        }
+
+        /* ── Card title ── */
+        .sk-title {
+          font-size: 0.55rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #64748b;
+          text-align: center;
+          transition: color 0.3s ease;
+        }
+        .sk-card:hover .sk-title {
+          color: #94a3b8;
+        }
+
+        /* ── Central glow disc ── */
+        .sk-disc {
+          position: absolute;
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(124,92,255,0.3) 0%, transparent 70%);
+          box-shadow: 0 0 40px rgba(124,92,255,0.4), 0 0 80px rgba(168,85,247,0.15);
+          pointer-events: none;
+        }
+
+        /* ── Pause badge ── */
+        .sk-pause-badge {
+          position: absolute;
+          bottom: -2.4rem;
+          font-size: 0.58rem;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(124,92,255,0.8);
+          pointer-events: none;
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ── Mobile height adj ── */
+        @media (max-width: 480px) {
+          .sk-viewport { height: 280px; }
+          .sk-root { padding: 5rem 1rem 9rem; }
+          .sk-heading { font-size: 2.2rem; }
+          .sk-card { width: 76px; height: 92px; }
+          .sk-ring { margin-top: -46px; }
+          .sk-icon { font-size: 1.7rem; }
+        }
+      `}</style>
+    </section>
+  );
+}
