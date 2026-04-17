@@ -67,6 +67,7 @@ const Header = () => {
         { name: 'Skills',       href: '#skills' },
         { name: 'Education',    href: '#education' },
         { name: 'Projects',     href: '#projects' },
+        { name: 'Hackathons',   href: '#hackathon' },
         { name: 'Certificates', href: '#certificates' },
         { name: 'LeetCode',     href: '#leetcode' },
         { name: 'Contact',      href: '#contact' },
@@ -77,12 +78,19 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
 
-                    {/* Logo */}
-                    <div
-                        className="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform duration-300"
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    >
-                        <LogoCanvas className="h-16 w-auto object-contain" />
+                    {/* Logo and Profile Image */}
+                    <div className="flex items-center gap-4">
+                        <div
+                            className="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform duration-300"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        >
+                            <LogoCanvas className="h-16 w-auto object-contain" />
+                        </div>
+                        <img 
+                            src="/footer.jpg.jpeg" 
+                            alt="Profile" 
+                            className="hidden sm:block w-10 h-10 rounded-full object-cover shadow-sm shrink-0 object-top"
+                        />
                     </div>
 
                     {/* Desktop Navigation */}
@@ -97,33 +105,19 @@ const Header = () => {
                             </a>
                         ))}
 
-                        {/* Theme Toggle */}
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none"
-                            aria-label="Toggle theme"
+                        {/* View Resume Button */}
+                        <a
+                            href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/view?usp=sharing"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-4 px-6 py-2.5 rounded-full font-bold text-white shadow-lg shadow-pink-500/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90 flex items-center gap-2 text-sm"
                         >
-                            {theme === 'light' ? (
-                                <Sun  className="h-5 w-5 text-yellow-500" />
-                            ) : (
-                                <Moon className="h-5 w-5 text-blue-400" />
-                            )}
-                        </button>
+                            View Resume
+                        </a>
                     </div>
 
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center">
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none"
-                            aria-label="Toggle theme"
-                        >
-                            {theme === 'light' ? (
-                                <Sun  className="h-5 w-5 text-yellow-500" />
-                            ) : (
-                                <Moon className="h-5 w-5 text-blue-400" />
-                            )}
-                        </button>
                         <button
                             onClick={toggleMenu}
                             className="p-2 rounded-md text-gray-600 hover:text-pink-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-pink-400 dark:hover:bg-gray-800 focus:outline-none"
@@ -143,7 +137,7 @@ const Header = () => {
                         exit={{ opacity: 0, height: 0 }}
                         className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-xl"
                     >
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                        <div className="px-2 pt-2 pb-6 space-y-1 sm:px-3">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
@@ -154,6 +148,15 @@ const Header = () => {
                                     {link.name}
                                 </a>
                             ))}
+                            <a
+                                href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block mt-4 mx-3 px-3 py-3 rounded-md text-base font-medium text-center text-white bg-gradient-to-r from-pink-500 to-purple-500 shadow-md"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                View Resume
+                            </a>
                         </div>
                     </motion.div>
                 )}
