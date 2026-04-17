@@ -4,7 +4,7 @@ export const projects = [
         title: 'Alani Nu Clone',
         description: 'Vibrant and energetic landing page for a wellness brand, showcasing responsive design and modern UI components.',
         tags: ['React', 'CSS3', 'Netlify', 'Frontend'],
-        category: 'Frontend',
+        category: 'Clones',
         color: 'from-pink-300 to-rose-400',
         live: 'https://alani-clone.netlify.app/',
         github: 'https://github.com/VishwaPatel892/ALANI-WEBSITE',
@@ -16,7 +16,7 @@ export const projects = [
         title: 'Vuori Clone',
         description: 'Modern activewear e-commerce interface with clean aesthetic, product grids, and smooth interactions.',
         tags: ['React', 'Tailwind', 'Netlify', 'UI/UX'],
-        category: 'Frontend',
+        category: 'Clones',
         color: 'from-stone-400 to-stone-600',
         live: 'https://vuori-clone.netlify.app/',
         github: 'https://github.com/VishwaPatel892/VUORI-WEBSITE',
@@ -28,7 +28,7 @@ export const projects = [
         title: 'Corkcicle Clone',
         description: 'Stylish product showcasing site for sustainable drinkware, focusing on visual appeal and brand identity.',
         tags: ['React', 'Styled Components', 'Netlify'],
-        category: 'Frontend',
+        category: 'Clones',
         color: 'from-teal-400 to-emerald-500',
         live: 'https://corkcicle-clone.netlify.app/',
         github: 'https://github.com/VishwaPatel892/CORKCICLE-CLONE',
@@ -40,7 +40,7 @@ export const projects = [
         title: 'Boll & Branch Clone',
         description: 'Boll & Branch is a luxury e-commerce website offering organic bedding and home essentials, focused on ethical sourcing, sustainability, and premium quality.',
         tags: ['React', 'HTML', 'Netlify', 'Shopping Cart'],
-        category: 'Frontend',
+        category: 'Clones',
         color: 'from-yellow-400 to-blue-600',
         live: 'https://vishwa-bollbranch-clone.netlify.app/',
         github: 'https://github.com/VishwaPatel892/BOLL-BRANCH',
@@ -50,9 +50,9 @@ export const projects = [
     {
         id: 5,
         title: 'MyPrime Clone',
-        description: 'Video streaming platform interface with dark mode, movie carousels, and responsive media grids.',
+        description: 'Video streaming platform interface with dark mode, movie carousels, and live TMDB API integration for real movie data.',
         tags: ['React', 'TMDB API', 'Netlify', 'Streaming'],
-        category: 'Frontend',
+        category: 'Clones',
         color: 'from-blue-600 to-indigo-900',
         live: 'https://myprime-clone.netlify.app/',
         github: 'https://github.com/VishwaPatel892/PRIME-WEBSITE',
@@ -120,5 +120,3 @@ export const projects = [
         image: '/project-fooddelivery.png.png'
     }
 ];
-
-

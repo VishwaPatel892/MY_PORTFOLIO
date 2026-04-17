@@ -115,7 +115,7 @@ const About = () => {
                             <div className="flex gap-4">
                                 <SocialIcon href="https://github.com/VishwaPatel892" icon={<Github className="w-5 h-5" />} />
                                 <SocialIcon href="https://www.linkedin.com/in/vishwa-patel-9bab9639a" icon={<Linkedin className="w-5 h-5" />} />
-                                <SocialIcon href="mailto:vishwa.patel.cg@gmail.com" icon={<Mail className="w-5 h-5" />} />
+                                <SocialIcon href="mailto:Vishwa.patel.cg@gmail.com" icon={<Mail className="w-5 h-5" />} />
                             </div>
                         </motion.div>
 
@@ -159,18 +159,7 @@ const About = () => {
                                         className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" 
                                     />
                                     
-                                    {/* Glassmorphism Name Tag */}
-                                    <div className="absolute bottom-6 left-6 right-6 z-20">
-                                        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl flex items-center justify-between">
-                                            <div>
-                                                <p className="text-gray-900 dark:text-white font-bold text-lg">Vishwa Patel</p>
-                                                <p className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
-                                                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                                                    Available for work
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </motion.div>
                         </motion.div>

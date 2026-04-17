@@ -206,7 +206,7 @@ const Certificates = () => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
           <motion.h2
-            className="text-5xl md:text-7xl font-black text-white tracking-tighter"
+            className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tighter"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

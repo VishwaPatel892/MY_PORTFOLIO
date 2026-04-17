@@ -43,7 +43,7 @@ const Background3D = () => {
     const { theme } = useTheme();
 
     return (
-        <div className={`fixed top-0 left-0 w-full h-full -z-10 transition-colors duration-300 ${theme === 'dark' ? 'bg-[#0B0212]' : 'bg-gray-50'}`}>
+        <div className={`fixed top-0 left-0 w-full h-full -z-10 transition-colors duration-300 ${theme === 'dark' ? 'bg-[#0B0212]' : 'bg-gray-200'}`}>
             {theme === 'dark' && (
                 <Canvas camera={{ position: [0, 0, 1] }}>
                     <Stars />

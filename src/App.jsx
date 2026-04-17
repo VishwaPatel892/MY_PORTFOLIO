@@ -3,16 +3,17 @@ import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Projects from './components/Projects';
+import FigmaDesigns from './components/FigmaDesigns';
 import Hackathon from './components/Hackathon';
+import Certificates from './components/Certificates';
+import Achievements from './components/Achievements';
+import LeetCode from './components/LeetCode';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 import Background3D from './components/Background3D';
 import CustomCursor from './components/CustomCursor';
 
-import LeetCode from './components/LeetCode';
-
-import Certificates from './components/Certificates';
 import About from './components/About';
 import ScrollToTop from './components/ScrollToTop';
 import Loader from './components/Loader';
@@ -33,6 +34,7 @@ const MainLayout = () => (
       <About />
       <Skills />
       <Education />
+      <Achievements />
       <Projects />
       <Hackathon />
       <Certificates />

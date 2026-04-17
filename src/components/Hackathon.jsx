@@ -93,7 +93,7 @@ const HackathonCard = ({ hack, index }) => {
             </div>
 
             {/* Achievement title */}
-            <h3 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
+            <h3 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3 leading-tight">
                 {hack.achievement}
             </h3>
 
@@ -195,9 +195,8 @@ const HackathonCard = ({ hack, index }) => {
 
             {/* Photo panel */}
             <div
-                className="relative flex-shrink-0 min-h-[280px]"
+                className="relative flex-shrink-0 min-h-[280px] w-full lg:w-[42%]"
                 style={{
-                    width: '42%',
                     order: hack.photoRight ? 2 : 1,
                 }}
             >
@@ -273,7 +272,7 @@ const Hackathon = () => {
                     >
                         Competitive
                     </span>
-                    <h2 className="text-5xl md:text-7xl font-black text-white mt-3 tracking-tight">
+                    <h2 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mt-3 tracking-tight">
                         Hackathon{' '}
                         <span
                             style={{

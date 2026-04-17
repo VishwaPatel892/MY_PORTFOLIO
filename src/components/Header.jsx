@@ -66,31 +66,25 @@ const Header = () => {
         { name: 'About',        href: '#about' },
         { name: 'Skills',       href: '#skills' },
         { name: 'Education',    href: '#education' },
+        { name: 'Achievements', href: '#achievements' },
         { name: 'Projects',     href: '#projects' },
-        { name: 'Hackathons',   href: '#hackathon' },
         { name: 'Certificates', href: '#certificates' },
-        { name: 'LeetCode',     href: '#leetcode' },
         { name: 'Contact',      href: '#contact' },
     ];
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-[#0B0212]/30 backdrop-blur-md border-b border-gray-200 dark:border-white/5 shadow-sm transition-all duration-300">
+        <header className="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-[#0B0212]/30 backdrop-blur-md border-b border-gray-200 dark:border-white/5 shadow-sm transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
 
-                    {/* Logo and Profile Image */}
+                    {/* Logo */}
                     <div className="flex items-center gap-4">
                         <div
                             className="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform duration-300"
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                         >
-                            <LogoCanvas className="h-16 w-auto object-contain" />
+                            <img src="/footer.jpg.jpeg" alt="Logo" className="h-12 w-12 rounded-full object-cover shadow-md border-2 border-white/10" />
                         </div>
-                        <img 
-                            src="/footer.jpg.jpeg" 
-                            alt="Profile" 
-                            className="hidden sm:block w-10 h-10 rounded-full object-cover shadow-sm shrink-0 object-top"
-                        />
                     </div>
 
                     {/* Desktop Navigation */}
@@ -105,15 +99,27 @@ const Header = () => {
                             </a>
                         ))}
 
-                        {/* View Resume Button */}
-                        <a
-                            href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/view?usp=sharing"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="ml-4 px-6 py-2.5 rounded-full font-bold text-white shadow-lg shadow-pink-500/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90 flex items-center gap-2 text-sm"
+                        {/* Theme Toggle */}
+                        <button
+                            onClick={toggleTheme}
+                            aria-label="Toggle theme"
+                            className="ml-2 p-2 rounded-full text-gray-600 hover:text-pink-500 dark:text-gray-300 dark:hover:text-pink-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors duration-300"
                         >
-                            View Resume
-                        </a>
+                            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                        </button>
+
+                        {/* Resume Buttons */}
+                        <div className="hidden lg:flex items-center gap-3 ml-2">
+                            <a 
+                                href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/preview" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:scale-[1.05]" 
+                                style={{ background: 'linear-gradient(135deg, #7c5cff 0%, #ec4899 100%)', boxShadow: '0 0 15px rgba(236,72,153,0.4)', color: '#fff' }}
+                            >
+                                View Resume
+                            </a>
+                        </div>
                     </div>
 
                     {/* Mobile menu button */}
@@ -148,15 +154,18 @@ const Header = () => {
                                     {link.name}
                                 </a>
                             ))}
-                            <a
-                                href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/view?usp=sharing"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block mt-4 mx-3 px-3 py-3 rounded-md text-base font-medium text-center text-white bg-gradient-to-r from-pink-500 to-purple-500 shadow-md"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                View Resume
-                            </a>
+                            <div className="mt-4 pt-4 px-3 border-t border-gray-100 dark:border-gray-800">
+                                <a 
+                                    href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/preview" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="block w-full text-center px-4 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-md" 
+                                    style={{ background: 'linear-gradient(135deg, #7c5cff 0%, #ec4899 100%)', color: '#fff' }}
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    View Resume
+                                </a>
+                            </div>
                         </div>
                     </motion.div>
                 )}

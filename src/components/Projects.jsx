@@ -163,7 +163,7 @@ const NavDots = ({ total, current, onSelect }) => (
 );
 
 /* ─── Main Projects Component ─── */
-const categories = ['All', 'Frontend', 'UI/UX', 'Games'];
+const categories = ['All', 'Clones', 'Games', 'UI/UX'];
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -196,7 +196,7 @@ const Projects = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white tracking-tight">
             Featured{" "}
             <span
               style={{
@@ -227,23 +227,22 @@ const Projects = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className="relative px-6 py-2.5 rounded-full font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all duration-300"
+              className={`relative px-8 py-3 rounded-full font-mono text-[10px] sm:text-xs font-black tracking-widest uppercase transition-all duration-300 ${activeCategory === cat ? 'text-white' : 'text-[#a3a3a3] hover:text-white hover:bg-white/5'}`}
               style={{
-                background: activeCategory === cat ? "rgba(236,72,153,0.15)" : "rgba(255,255,255,0.03)",
-                color: activeCategory === cat ? "#fff" : "#a3a3a3",
-                border: `1px solid ${activeCategory === cat ? "rgba(236,72,153,0.5)" : "rgba(255,255,255,0.1)"}`,
-                boxShadow: activeCategory === cat ? "0 0 20px rgba(236,72,153,0.2)" : "none",
+                background: activeCategory === cat ? "transparent" : "rgba(255,255,255,0.03)",
+                border: `1px solid ${activeCategory === cat ? "transparent" : "rgba(255,255,255,0.1)"}`,
+                boxShadow: activeCategory === cat ? "0 0 25px rgba(236,72,153,0.6), 0 0 50px rgba(168,85,247,0.4)" : "none",
               }}
             >
               {activeCategory === cat && (
                 <motion.div
                   layoutId="activeTabGlow"
                   className="absolute inset-0 rounded-full"
-                  style={{ background: "linear-gradient(to right, rgba(236,72,153,0.2), rgba(168,85,247,0.2))", zIndex: -1 }}
+                  style={{ background: "linear-gradient(135deg, #ec4899 0%, #a855f7 100%)", zIndex: -1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
-              {cat}
+              <span className="relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{cat}</span>
             </button>
           ))}
         </motion.div>
@@ -269,20 +268,20 @@ const Projects = () => {
                   <div className="flex-1 flex flex-col justify-center">
                     {/* Project Number & Title */}
                     <div className="flex items-center gap-4 mb-5">
-                      <span className="text-3xl font-black" style={{ color: "rgba(255,255,255,0.1)" }}>
+                      <span className="text-3xl font-black text-gray-300 dark:text-white/10">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <span
                         className="block w-6 h-1 lg:w-8 rounded-full flex-shrink-0"
                         style={{ background: "linear-gradient(to right, #ec4899, #a855f7)" }}
                       />
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white tracking-tight">
                         {project.title}
                       </h3>
                     </div>
 
                     {/* Description */}
-                    <p className="text-[#a3a3a3] text-sm leading-relaxed mb-5 max-w-md">
+                    <p className="text-gray-600 dark:text-[#a3a3a3] text-sm leading-relaxed mb-5 max-w-md">
                       <span style={{ color: "#ec4899", marginRight: "6px" }}>🚀</span>
                       {project.description}
                     </p>
@@ -292,7 +291,7 @@ const Projects = () => {
                       {bullets.map((b, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <Star className="mt-0.5 shrink-0" size={14} style={{ color: "#a890ff" }} />
-                          <span className="text-[#d4d4d4] text-sm">{b}</span>
+                          <span className="text-gray-700 dark:text-[#d4d4d4] text-sm">{b}</span>
                         </li>
                       ))}
                     </ul>
@@ -300,15 +299,7 @@ const Projects = () => {
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-8">
                       {project.tags?.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1.5 rounded-full text-[9px] font-mono font-semibold uppercase tracking-widest"
-                          style={{
-                            background: "rgba(255,255,255,0.04)",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                            color: "#a890ff",
-                          }}
-                        >
+                        <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-[10px] font-mono font-bold text-purple-600 dark:text-[#a890ff] uppercase tracking-widest border border-gray-200 dark:border-white/5">
                           {tag}
                         </span>
                     ))}

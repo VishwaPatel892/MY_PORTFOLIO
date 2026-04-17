@@ -9,8 +9,9 @@ const CustomCursor = () => {
 
     useEffect(() => {
         const checkMobile = () => {
+            // Only disable on actual touch devices, not just small windows
             const hasTouch = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
-            setIsMobile(hasTouch || window.innerWidth <= 768);
+            setIsMobile(hasTouch);
         };
         checkMobile();
         window.addEventListener('resize', checkMobile);
