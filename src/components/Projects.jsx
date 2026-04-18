@@ -55,6 +55,46 @@ const projectBullets = {
     "Digital voucher flows and vibrant screen designs",
     "Community Figma kit with intuitive user-friendly layouts",
   ],
+  11: [
+    "Intuitive task management interface",
+    "Real-time state updates and smooth transitions",
+    "Clean, minimalistic design for maximum productivity",
+  ],
+  12: [
+    "Classic arcade game built with vanilla JavaScript",
+    "Dynamic event listeners and score tracking",
+    "Fast-paced interactions and responsive gameplay",
+  ],
+  13: [
+    "Engaging memory card matching mechanics",
+    "Smooth flip animations and state management",
+    "Clean visual feedback for matches and mistakes",
+  ],
+  14: [
+    "Developed a robust Node.js and Express RESTful API",
+    "Implemented full CRUD operations with MongoDB integration",
+    "Comprehensive Postman documentation and testing suite",
+  ],
+  15: [
+    "Integrated a third-party backend API to retrieve meal data",
+    "Dynamic rendering of recipe grids and details",
+    "Implemented asynchronous JavaScript for seamless data fetching",
+  ],
+  16: [
+    "Developed a dedicated Node.js and Express backend service",
+    "Implemented endpoints for student records and CGPA calculation",
+    "Comprehensive Postman documentation for API consumption",
+  ],
+  17: [
+    "Built a robust E-commerce product management RESTful API",
+    "Fully deployed and hosted on Render cloud platform",
+    "Thoroughly documented endpoints using Postman",
+  ],
+  18: [
+    "Engineered a Node.js backend for tracking state-level statistics",
+    "Configured seamless cloud deployment on Render",
+    "Designed and documented RESTful endpoints via Postman",
+  ],
 };
 
 /* ─── Right panel: premium single-image mockup ─── */
@@ -163,14 +203,19 @@ const NavDots = ({ total, current, onSelect }) => (
 );
 
 /* ─── Main Projects Component ─── */
-const categories = ['All', 'Clones', 'Games', 'UI/UX'];
+const categories = ['All', 'Frontend Project', 'Backend API', 'Games', 'UI/UX'];
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [showAll, setShowAll] = useState(false);
 
   const filteredProjects = activeCategory === 'All' 
     ? projects 
     : projects.filter(p => p.category === activeCategory);
+
+  const displayedProjects = (activeCategory === 'All' && !showAll)
+    ? filteredProjects.slice(0, 5)
+    : filteredProjects;
 
   return (
     <section
@@ -226,7 +271,7 @@ const Projects = () => {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => { setActiveCategory(cat); setShowAll(false); }}
               className={`relative px-8 py-3 rounded-full font-mono text-[10px] sm:text-xs font-black tracking-widest uppercase transition-all duration-300 ${activeCategory === cat ? 'text-white' : 'text-[#a3a3a3] hover:text-white hover:bg-white/5'}`}
               style={{
                 background: activeCategory === cat ? "transparent" : "rgba(255,255,255,0.03)",
@@ -250,7 +295,7 @@ const Projects = () => {
         {/* Vertically Stacked Projects */}
         <div className="flex flex-col gap-32 lg:gap-40">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => {
+            {displayedProjects.map((project, index) => {
               const bullets = projectBullets[project.id] || [];
               const isEven = index % 2 === 0;
 
@@ -385,6 +430,31 @@ const Projects = () => {
           })}
           </AnimatePresence>
         </div>
+
+        {activeCategory === 'All' && !showAll && filteredProjects.length > 5 && (
+          <motion.div 
+            className="mt-24 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <button
+              onClick={() => setShowAll(true)}
+              className="px-8 py-4 rounded-full font-mono text-xs sm:text-sm font-black tracking-widest uppercase transition-all duration-300"
+              style={{
+                background: "linear-gradient(to right, #ec4899, #a855f7)",
+                color: "#fff",
+                boxShadow: "0 0 25px rgba(236,72,153,0.4), 0 0 50px rgba(168,85,247,0.3)",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 35px rgba(236,72,153,0.6), 0 0 60px rgba(168,85,247,0.5)")}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 25px rgba(236,72,153,0.4), 0 0 50px rgba(168,85,247,0.3)")}
+            >
+              View All Projects
+            </button>
+          </motion.div>
+        )}
+
       </div>
     </section>
   );
