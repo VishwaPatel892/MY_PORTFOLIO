@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 
 /* ── Carousel Component ── */
-const PhotoCarousel = ({ photos, alt, accentColor }) => {
+export const PhotoCarousel = ({ photos, alt, accentColor, objectFit, autoPlay = true, interval = 3500 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (!autoPlay || !Array.isArray(photos) || photos.length <= 1) return;
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % photos.length);
+        }, interval);
+        return () => clearInterval(timer);
+    }, [photos, autoPlay, interval]);
 
     if (!Array.isArray(photos)) {
         return (
@@ -28,14 +36,18 @@ const PhotoCarousel = ({ photos, alt, accentColor }) => {
         setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
     };
 
+    const currentPhoto = photos[currentIndex];
+    const isUiImage = currentPhoto && (currentPhoto.includes('ui.png') || currentPhoto.includes('presentation.png'));
+    const fitClass = objectFit || (isUiImage ? 'object-contain' : 'object-cover');
+
     return (
-        <div className="relative w-full h-full min-h-[320px] overflow-hidden group">
+        <div className="relative w-full h-full min-h-[320px] overflow-hidden group bg-[#0B0B0F]">
             <AnimatePresence mode="wait">
                 <motion.img
                     key={currentIndex}
-                    src={photos[currentIndex]}
+                    src={currentPhoto}
                     alt={`${alt} - slide ${currentIndex + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className={`absolute inset-0 w-full h-full ${fitClass}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

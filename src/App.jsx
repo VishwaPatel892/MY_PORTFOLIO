@@ -17,6 +17,7 @@ import CustomCursor from './components/CustomCursor';
 import About from './components/About';
 import ScrollToTop from './components/ScrollToTop';
 import Loader from './components/Loader';
+import HackathonPopup from './components/HackathonPopup';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
@@ -24,7 +25,7 @@ import { Routes, Route } from 'react-router-dom';
 import LiveDemo from './components/LiveDemo';
 
 // Main Layout Component
-const MainLayout = () => (
+const MainLayout = ({ showPopup, onClosePopup }) => (
   <div className="min-h-screen text-gray-800 dark:text-gray-200 transition-colors duration-300 relative">
     <CustomCursor />
     <Background3D />
@@ -43,19 +44,21 @@ const MainLayout = () => (
     </main>
     <Footer />
     <ScrollToTop />
+    <HackathonPopup isOpen={showPopup} onClose={onClosePopup} />
   </div>
 );
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <>
       <AnimatePresence>
-        {loading && <Loader key="loader" onLoadingComplete={() => setLoading(false)} />}
+        {loading && <Loader key="loader" onLoadingComplete={() => { setLoading(false); setShowPopup(true); }} />}
       </AnimatePresence>
       <Routes>
-        <Route path="/" element={<MainLayout />} />
+        <Route path="/" element={<MainLayout showPopup={showPopup} onClosePopup={() => setShowPopup(false)} />} />
         <Route path="/demo/:id" element={<LiveDemo />} />
       </Routes>
     </>

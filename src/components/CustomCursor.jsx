@@ -51,7 +51,8 @@ const CustomCursor = () => {
         <>
             {/* Main Cursor Dot */}
             <motion.div
-                className="hidden md:block fixed top-0 left-0 w-3 h-3 bg-pink-500 rounded-full pointer-events-none z-[9999] border border-white shadow-sm"
+                className="hidden md:block fixed top-0 left-0 w-3 h-3 bg-pink-500 rounded-full pointer-events-none border border-white shadow-sm"
+                style={{ zIndex: 100000 }}
                 animate={{
                     x: mousePosition.x - 6,
                     y: mousePosition.y - 6,
@@ -61,7 +62,8 @@ const CustomCursor = () => {
             />
             {/* Trailing Ring */}
             <motion.div
-                className="hidden md:block fixed top-0 left-0 w-8 h-8 border-2 border-pink-400/50 rounded-full pointer-events-none z-[9998]"
+                className="hidden md:block fixed top-0 left-0 w-8 h-8 border-2 border-pink-400/50 rounded-full pointer-events-none"
+                style={{ zIndex: 99999 }}
                 animate={{
                     x: mousePosition.x - 16,
                     y: mousePosition.y - 16,
