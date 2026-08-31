@@ -1,5 +1,17 @@
 export const projects = [
     {
+        id: 19,
+        title: 'LAKSHYA — AI Browser Companion',
+        description: 'LAKSHYA is a next-generation AI Browser Companion that transforms the way users browse, learn, analyze, and interact with web content.',
+        tags: ['AI', 'React', 'Chrome Extension', 'Manifest V3', 'Node.js', 'Vercel'],
+        category: 'Frontend Project',
+        color: 'from-blue-600 to-cyan-500',
+        live: 'https://team-lakshya1.vercel.app/',
+        github: 'https://github.com/VishwaPatel892/team_lakshya',
+        youtube: null,
+        image: '/lakshya-ui.png'
+    },
+    {
         id: 1,
         title: 'Alani Nu Clone',
         description: 'Vibrant and energetic landing page for a wellness brand, showcasing responsive design and modern UI components.',

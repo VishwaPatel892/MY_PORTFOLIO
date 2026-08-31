@@ -9,7 +9,7 @@ const highlights = [
   { icon: GraduationCap, color: '#a855f7', label: 'Education', value: 'B.Tech CSE (Pursuing)' },
   { icon: Code2, color: '#ec4899', label: 'Stack', value: 'MERN · React · Node.js' },
   { icon: Briefcase, color: '#3b82f6', label: 'Projects', value: '10+ Deployed Live' },
-  { icon: Award, color: '#f59e0b', label: 'Hackathons', value: '4 Competed · 1 Podium' },
+  { icon: Award, color: '#f59e0b', label: 'Hackathons', value: '5 Competed · 2 Podiums' },
 ];
 
 const Resume = () => {

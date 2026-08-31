@@ -5,6 +5,11 @@ import { projects } from "../data/projects";
 
 /* ─── Bullet points per project ─── */
 const projectBullets = {
+  19: [
+    "Transforms web browsing with real-time AI context awareness",
+    "Works directly inside the browser using Manifest V3 & React",
+    "Empowers users to summarize, analyze, and chat with any active webpage",
+  ],
   1: [
     "Vibrant, responsive landing page for a wellness brand",
     "Smooth UI animations and modern component design",

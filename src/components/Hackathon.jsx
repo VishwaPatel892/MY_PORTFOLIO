@@ -1,8 +1,109 @@
-import { motion } from 'framer-motion';
-import { Github, ExternalLink, Award } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+
+/* ── Carousel Component ── */
+const PhotoCarousel = ({ photos, alt, accentColor }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    if (!Array.isArray(photos)) {
+        return (
+            <img
+                src={photos}
+                alt={alt}
+                className="w-full h-full object-cover"
+                style={{ minHeight: '320px' }}
+                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'; }}
+            />
+        );
+    }
+
+    const nextSlide = (e) => {
+        e.stopPropagation();
+        setCurrentIndex((prev) => (prev + 1) % photos.length);
+    };
+
+    const prevSlide = (e) => {
+        e.stopPropagation();
+        setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
+    };
+
+    return (
+        <div className="relative w-full h-full min-h-[320px] overflow-hidden group">
+            <AnimatePresence mode="wait">
+                <motion.img
+                    key={currentIndex}
+                    src={photos[currentIndex]}
+                    alt={`${alt} - slide ${currentIndex + 1}`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'; }}
+                />
+            </AnimatePresence>
+
+            {/* Navigation arrows */}
+            <button
+                onClick={prevSlide}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/80 flex items-center justify-center border border-white/10"
+                aria-label="Previous image"
+            >
+                <ChevronLeft size={16} />
+            </button>
+            <button
+                onClick={nextSlide}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/80 flex items-center justify-center border border-white/10"
+                aria-label="Next image"
+            >
+                <ChevronRight size={16} />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2 bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                {photos.map((_, idx) => (
+                    <button
+                        key={idx}
+                        onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                        className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                        style={{
+                            backgroundColor: idx === currentIndex ? accentColor : 'rgba(255,255,255,0.4)',
+                            transform: idx === currentIndex ? 'scale(1.2)' : 'scale(1)',
+                        }}
+                        aria-label={`Go to slide ${idx + 1}`}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
 
 /* ── Data ── */
 const hackathons = [
+    {
+        id: 5,
+        year: '2026',
+        event: 'CodingGita',
+        achievement: 'LAKSHYA — 1st Rank Winner',
+        project: 'AI Browser Companion',
+        description:
+            'LAKSHYA is a next-generation AI Browser Companion that transforms the way users browse, learn, analyze, and interact with web content. Built during the CodingGita Hackathon, winning the 1st Rank.',
+        tags: ['AI', 'React', 'Chrome Extension', 'Manifest V3', 'Node.js', 'Vercel'],
+        github: 'https://github.com/VishwaPatel892/team_lakshya',
+        live: 'https://team-lakshya1.vercel.app/',
+        certificate: null,
+        photo: [
+            '/lakshya-ui.png',
+            '/lakshya-team.png',
+            '/lakshya-presentation.png',
+            '/lakshya-award.png'
+        ],
+        badge: '🏆 1st Position',
+        accentColor: '#3b82f6',
+        glowColor: 'rgba(59,130,246,0.25)',
+        photoRight: true,
+    },
     {
         id: 1,
         year: '2026',
@@ -19,7 +120,7 @@ const hackathons = [
         badge: '🥉 2nd Runner Up',
         accentColor: '#a855f7',
         glowColor: 'rgba(168,85,247,0.25)',
-        photoRight: true,
+        photoRight: false,
     },
     {
         id: 2,
@@ -37,7 +138,7 @@ const hackathons = [
         badge: '🏁 Finalist',
         accentColor: '#ec4899',
         glowColor: 'rgba(236,72,153,0.25)',
-        photoRight: false,
+        photoRight: true,
     },
     {
         id: 3,
@@ -55,7 +156,7 @@ const hackathons = [
         badge: '🚀 Hackathon',
         accentColor: '#7c5cff',
         glowColor: 'rgba(124,92,255,0.25)',
-        photoRight: true,
+        photoRight: false,
     },
     {
         id: 4,
@@ -73,9 +174,10 @@ const hackathons = [
         badge: '🌟 Featured',
         accentColor: '#f472b6',
         glowColor: 'rgba(244,114,182,0.25)',
-        photoRight: false,
+        photoRight: true,
     },
 ];
+
 
 /* ─── Single hackathon card ─── */
 const HackathonCard = ({ hack, index }) => {
@@ -211,12 +313,10 @@ const HackathonCard = ({ hack, index }) => {
                 </div>
 
                 {/* Photo */}
-                <img
-                    src={hack.photo}
+                <PhotoCarousel
+                    photos={hack.photo}
                     alt={hack.achievement}
-                    className="w-full h-full object-cover"
-                    style={{ minHeight: '320px' }}
-                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'; }}
+                    accentColor={hack.accentColor}
                 />
 
                 {/* Gradient overlay */}
