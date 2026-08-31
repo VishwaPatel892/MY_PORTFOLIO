@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Eye, X, ExternalLink, Briefcase, GraduationCap, Code2, Award } from 'lucide-react';
 
-const RESUME_PREVIEW = 'https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/preview';
-const RESUME_DRIVE = 'https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/view?usp=sharing';
+const RESUME_PREVIEW = 'https://drive.google.com/file/d/1ZE8lIUCqJ683ZbtGLZXaqy-TyFnKh-rv/preview';
+const RESUME_DRIVE = 'https://drive.google.com/file/d/1ZE8lIUCqJ683ZbtGLZXaqy-TyFnKh-rv/view?usp=sharing';
 
 const highlights = [
   { icon: GraduationCap, color: '#a855f7', label: 'Education', value: 'B.Tech CSE (Pursuing)' },

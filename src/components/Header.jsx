@@ -111,7 +111,7 @@ const Header = () => {
                         {/* Resume Buttons */}
                         <div className="hidden lg:flex items-center gap-3 ml-2">
                             <a 
-                                href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/preview" 
+                                href="https://drive.google.com/file/d/1ZE8lIUCqJ683ZbtGLZXaqy-TyFnKh-rv/preview" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:scale-[1.05]" 
@@ -156,7 +156,7 @@ const Header = () => {
                             ))}
                             <div className="mt-4 pt-4 px-3 border-t border-gray-100 dark:border-gray-800">
                                 <a 
-                                    href="https://drive.google.com/file/d/19Ol-sH44P-lWeZ0xxuPuS1Yk9m09GVlR/preview" 
+                                    href="https://drive.google.com/file/d/1ZE8lIUCqJ683ZbtGLZXaqy-TyFnKh-rv/preview" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     className="block w-full text-center px-4 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-md" 
